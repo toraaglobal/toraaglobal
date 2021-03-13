@@ -1,0 +1,182 @@
+{% load static %}
+{% url 'contact' as contact_url %}
+{% url 'website_home' as website_home_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block head_title %}{% endblock %}Toraaglobal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'website/img/core-img/favicon.ico' %}">
+
+
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/classy-nav.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/credit-icon.css' %}">
+
+
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-------------- Notification Area ----------------->
+    {% include 'website/notification.html' %}
+    <!-------------- Notification Area Ends ----------------->
+
+
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 d-flex justify-content-between">
+                        <!-- Logo Area -->
+                        <div class="logo">
+                            <a href="{% url 'website_home' %}"><img src="{% static 'website/img/core-img/logo.png' %}" alt=""></a>
+                        </div>
+
+                        <!-- Top Contact Info -->
+                        <div class="top-contact-info d-flex align-items-center">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="10270 E Taron DR , Elk Grove CA"><img src="{% static 'website/img/core-img/placeholder.png' %}" alt=""> <span>10270 E Taron DR , Elk Grove CA</span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="info@toraaglobal.com">
+                                <img src="{% static 'website/img/core-img/message.png' %}" alt=""> <span>info@toraaglobal.com</span>
+                            </a>
+                            
+                            <!-- <a href="#" class=" dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                            </a> -->
+                            <a href="#" class="ml-4 dropdown-toggle" data-toggle="dropdown">
+                                <img src="{% static 'website/img/core-img/avatardefault.png' %}" alt="" style="margin-right: 0;">
+                            </a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="credit-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="creditNav">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    
+                                    <li><a href="{% url 'website_home' %}">Home</a></li>
+                                    
+                                    <li><a href="{% url 'website_about' %}">About Us</a></li>
+                                    
+                                    <li><a href="{% url 'website_services' %}">Services</a></li>
+                                    
+                                    <li><a href="{% url 'website_contact' %}">Contact</a></li>
+
+                                    
+                                    
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="contact">
+                            <!-- <a href="#"><i class="fa fa-user"></i> Login</a> -->
+                            <a href="{% url 'website_contact' %}"><img src="{% static 'website/img/core-img/call2.png' %}" alt=""> +1 925 478 9859</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    {% block content %}
+    {% endblock %}
+
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area section-padding-40-0">
+        
+        <!-- Copywrite Area -->
+        <div class="copywrite-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copywrite-content d-flex flex-wrap justify-content-between align-items-center">
+                            <!-- Footer Logo -->
+                            <a href="{% url 'website_home' %}" class="footer-logo"><img src="{% static 'website/img/core-img/logo.png' %}" alt=""></a>
+
+                            <!-- Copywrite Text -->
+                            <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'website/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'website/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'website/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'website/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'website/js/active.js' %}"></script>
+    
+    {% block extra_body %}
+    {% endblock %}
+</body>
+
+</html>
