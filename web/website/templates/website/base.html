@@ -1,0 +1,322 @@
+{% load static %}
+{% url 'contact' as contact_url %}
+{% url 'website_home' as website_home_url %}
+{% url 'website_about' as website_about_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block head_title %}{% endblock %}Toraaglobal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'website/img/core-img/favicon.ico' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+
+</head>
+
+<body>
+    <!-- ##### Preloader ##### -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+    </div>
+
+    
+
+  <div class="" id="message_container" style="position: fixed; z-index: 99998; width: 100%;">
+    <div class="container m-auto">
+        
+        <!-----------  Anouncement --------------->
+        <!-----------  Anouncement Ends --------------->
+
+
+        <!-------------- Message Area ----------------->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-base alert-dismissible fade show m-2 shadow" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-------------- Message Area Ends ----------------->
+
+    </div>
+  </div>
+
+
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="top-header-content h-100 d-flex align-items-center justify-content-between">
+                            <!-- Top Headline -->
+                            <div class="top-headline">
+                                <p>Welcome to <span>Toraaglobal</span></p>
+                            </div>
+                            <!-- Top Login & Faq & Earn Monery btn -->
+                            <div class="login-faq-earn-money">
+                                <a href="#"> Chat Room </a>
+                                <a href="{% url 'website_web_terminal' %}">Web Terminal</a>
+                                <a href="{% url 'account_login' %}">Login | Register</a>
+                                <a href="#">FAQ</a>
+                                <a href="{% url 'website_web_terminal' %}" class="active">Earn Money </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="cryptos-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="cryptosNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{% url 'website_home' %}"><img src="{% static 'website/img/core-img/logo_.png' %}" alt="Toraaglobal"></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'website_home' %}">Home</a></li>
+                                    <li><a href="{% url 'website_about' %}">About</a>
+                                    <li><a href="#"> Services </a>
+                                    <li><a href="#">Articles</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'website_home' %}">Machine Learning</a></li>
+                                            <li><a href="{% url 'website_about' %}">Data Science</a></li>
+                                            <li><a href="blog.html">Artificial Intelligence</a></li>
+                                            <!-- <li><a href="{% url 'website_contact' %}">Contact</a></li> -->
+                                            <!-- <li><a href="elements.html">Elements</a></li>
+                                            <li><a href="#">Dropdown</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="index.html">Home</a></li>
+                                                    <li><a href="{% url 'website_about' %}">About Us</a></li>
+                                                    <li><a href="blog.html">Articles</a></li>
+                                                    <li><a href="contact.html">Contact</a></li>
+                                                    <li><a href="elements.html">Elements</a></li>
+                                                    <li><a href="#">Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="index.html">Home</a></li>
+                                                            <li><a href="about-us.html">About Us</a></li>
+                                                            <li><a href="blog.html">Articles</a></li>
+                                                            <li><a href="contact.html">Contact</a></li>
+                                                            <li><a href="elements.html">Elements</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li> -->
+                                        </ul>
+                                    </li>
+                                    <li><a href="#"> Portfolio </a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- Supervised</a></li>
+                                                <li><a href="#">- Regression</a></li>
+                                                <li><a href="#">- Classification</a></li>
+                                              
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- Unsupervised</a></li>
+                                                <li><a href="#">- Clustering</a></li>
+                                              
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- Re-enforcement Learning</a></li>
+                                                <li><a href="#">- Deep Learning</a></li>
+                                               
+                                            </ul>
+                                            <div class="single-mega cn-col-4">
+                                                <div class="megamenu-slides owl-carousel">
+                                                    <img src="{% static 'website/img/bg-img/bg-1.jpg' %}" alt="">
+                                                    <img src="{% static  'website/img/bg-img/bg-1.jpg' %}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                 
+                                    <li><a href="{% url 'website_contact' %}">Contact</a></li>
+
+                                </ul>
+
+                                <!-- Newsletter Form -->
+                                <div class="header-newsletter-form">
+                                    <form action="{% url 'website_home' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="email" name="email" id="email" placeholder="Newsletter">
+                                        <button type="submit">Subscribe</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+
+    {% block content %}
+    
+    {% endblock %}
+
+
+    
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Main Footer Area -->
+        <div class="main-footer-area section-padding-100-0 bg-img bg-overlay" style="background-image: url(img/bg-img/bg-1.jpg});">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <a href="#"><img src="{% static 'website/img/core-img/logo2.png' %}" alt=""></a>
+                            </div>
+                            <p>Morbi vel arcu gravida, iaculis lacus vel, posuere ipsum. Sed faucibus mauris vitae urna consectetur, sit amet maximus nisl sagittis. Ut in iaculis enim, et pulvinar mauris. Etiam tristique magna eget velit consectetur, a tincidunt velit dictum.</p>
+                            <div class="footer-social-info">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Recent Posts</h6>
+                            </div>
+                            <!-- Single Blog Post -->
+                            {% for x in api.Data %}
+
+                                {% if forloop.counter < 4 %}
+                            <div class="single--blog-post">
+                                <a href="{{ x.url }}" target="blank">
+                                    <p>{{ x.title }}</p>
+                                </a>
+                                <span>{{ x.published_on }}</span>
+                            </div>
+                            {% endif %}
+            
+                            {% endfor %}
+
+                            <!-- Single Blog Post -->
+                            <!-- <div class="single--blog-post">
+                                <a href="#">
+                                    <p>Donec in libero sit amet mi vulputate</p>
+                                </a>
+                                <span>March 10, 2018</span>
+                            </div> -->
+                            <!-- Single Blog Post -->
+                            <!-- <div class="single--blog-post">
+                                <a href="#">
+                                    <p>Aliquam ac eleifend metus</p>
+                                </a>
+                                <span>March 10, 2018</span>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="footer-widget mb-100">
+                            <div class="widget-title">
+                                <h6>Quick Links</h6>
+                            </div>
+                            <nav>
+                                <ul class="useful-links d-flex justify-content-between flex-wrap">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Faq</a></li>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">Testimonials</a></li>
+                                    <li><a href="#">Newsletter &amp; Exchange</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">Exchange</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Remitpro</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static  'website/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'website/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'website/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'website/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'website/js/active.js' %}"></script>
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
+    <script src="{% static 'website/js/google-map/map-active.js' %}"></script>
+
+    {% block extra_body %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- ##### Currency calculator Area Start ###### -->
+<section class="section-padding-100">
+    <div class="container" style="background-color:#e2dfdf">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-lg-8">
+                <div class="nl-content text-center">
+                    <h2>Dollars for Naira Calculator</h2>
+                    <p>Updated At: <b class="excreated-at"></b> </p>
+                    <div class="currency-calculator mb-15 clearfix">
+                        <form id="exrate_form">
+                            {% csrf_token %}
+                            <div class="d-flex align-items-center justify-content-center">
+                                <!-- Calculator Part -->
+                                <div class="calculator-first-part d-flex align-items-center">
+                                    <input class="form-control send_amount" type="number" name="send_amount" step=".01" placeholder="Send Amount" style="color: black;" required>
+                                    <select name="send_currency" class="form-control send_currency" required>
+                                        {% for send_currency in send_currencies %}
+                                        <option value="{{send_currency.code}}">{{send_currency.code}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <!-- Equal Sign -->
+                                <div class="equal-sign" style="font-size: 50px;">&nbsp;=&nbsp;</div>
+
+                                <!-- Calculator Part -->
+                                <div class="calculator-sec-part d-flex align-items-center">
+                                    <input disabled class="form-control recipient_amount" type="text" name="recipient_amount" placeholder="Recipient Amount" required>
+                                    <select name="receive_currency" class="form-control receive_currency" required>
+                                        {% for receive_currency in receive_currencies %}
+                                        <option value="{{receive_currency.code}}">{{receive_currency.code}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <a href="{% url 'appboard_home' %}" style="background: #ffaf02;" class="btn credit-btn box-shadow btn-2 rate-calculator-btn"> Send Money </a>
+                            </div>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### currency calculator Area End ###### -->
+
+
+
+{% endblock %}
+
+
+
+{% block extra_body %}
+<script>
+let excreated_at = null;
+let exrate = []
+
+{% for erate in exchange_rates %}
+try {
+    exrate['{{erate.send_currency}}']['{{erate.receive_currency}}'] = {{erate.buying_price}}
+} catch (error) {
+    exrate['{{erate.send_currency}}']=[]
+    exrate['{{erate.send_currency}}']['{{erate.receive_currency}}'] = {{erate.buying_price}}
+}
+excreated_at = "{{erate.created_at}}"
+{% endfor %}
+
+$(".excreated-at").html(`${excreated_at} (UTC)`)
+
+</script>
+
+
+<script src="{% static 'website/js/currency_calculator.js' %}" ></script>
+
+{% endblock %}
