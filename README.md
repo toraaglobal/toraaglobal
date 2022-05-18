@@ -1,38 +1,35 @@
-***Run web locally***
+***To run web locally***
 
 clone the repo
 ```
 git clone https://github.com/toraaglobal/toraaglobal
 ```
-Navigate to the web directory
+
+Navigate to the root folder and create a virtual environment
+
 ```
-cd web
-```
-create virtual environment 
-```
+cd toraaglobal
 virtualenv venv
 ```
-activate virtaul environment
+
+Activate virtaul environment
 ```
 source venv/bin/activate
 ```
 
-install requirements
+Install requirements
 
 ```
 pip install -r requirements.txt
 ```
 
-migrate database
+Migrate database
 ```
 python manage.py migrate
 ```
 
-run the app
+Run the app
 ```
 python manage.py runserver
 ```
 visit `http://127.0.0.1:8000/` on your browser
-***
-![Diagram](./diagram.svg)
-***
