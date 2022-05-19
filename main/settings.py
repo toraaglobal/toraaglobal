@@ -30,7 +30,7 @@ SECRET_KEY = '455@%&0wijo9@=ezy=*u%w*bkr-bu%2-+@6+hf&(p%-kiy5u0e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.toraaglobal.com', 'toraaglobal.com']
+ALLOWED_HOSTS = ['www.toraaglobal.com', 'toraaglobal.com', '127.0.0.1']
 
 
 # Application definition

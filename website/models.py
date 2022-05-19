@@ -42,6 +42,7 @@ class Portfolio(models.Model):
     portfolio = models.FileField(upload_to='portfolio_files/',null=True, validators=[validate_file_extension])
     content = models.TextField()
     target = models.CharField(max_length=255)
+    portfolio_link = models.URLField()
 
     class Meta:
         ordering = ['-id', ]

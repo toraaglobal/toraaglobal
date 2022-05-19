@@ -8,7 +8,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'picture', 'portfolio', 'content')
+    list_display = ('id', 'title', 'picture', 'portfolio', 'content', 'portfolio_link')
     search_fields = ('title', 'picture', 'portfolio', 'content')
 
 
