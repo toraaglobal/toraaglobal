@@ -14,7 +14,7 @@ from pathlib import Path
 import os 
 
 
-DEV_ENV = 'local'
+DEV_ENV = os.environ.get('DEV_ENV') # dev, test
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '455@%&0wijo9@=ezy=*u%w*bkr-bu%2-+@6+hf&(p%-kiy5u0e'
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')=='True'
 
-ALLOWED_HOSTS = ['www.toraaglobal.com', 'toraaglobal.com', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -85,12 +86,42 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+if DEV_ENV == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+elif DEV_ENV == 'shared':
+    #https://stackoverflow.com/questions/34777755/how-to-config-django-using-pymysql-as-driver
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', 
+            'NAME': os.environ.get('database'),
+            'USER': os.environ.get('usermysql'),
+            'PASSWORD': os.environ.get('passwordmysql'),
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
+    }
+
+else:
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('dbname'), # os.environ.get('DB_NAME', 'default_value')
+            'USER': os.environ.get('user'),
+            'PASSWORD': os.environ.get('password'),
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+            'OPTIONS': {'sslmode': 'prefer'},
+        }
+    }
+
 
 
 # Password validation
@@ -142,10 +173,23 @@ else:
 
 
 #authenticated_url
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/blog'
 LOGOUT_REDIRECT_URL = '/accounts'
 AUTH_USER_MODEL = 'accounts.User'
+
+
+#authenticated_url
+if DEBUG: # delete not when deploy
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+elif DEBUG==False:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST')
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')=='True' # change it
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT')) # change it
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # tinymce_configrations
@@ -156,3 +200,24 @@ TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "tinymce")
 
 # crispy config
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': os.environ.get("DJANGO_LOG_LEVEL"),
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR,  'debug.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': os.environ.get("DJANGO_LOG_LEVEL"),
+            'propagate': True,
+        },
+    },
+}
