@@ -33,19 +33,19 @@ def website_home(request):
 
 
 
-def website_blog(request):
-    abouts = About.objects.all()
-    portfolios = Portfolio.objects.all()
-    footer_social = FooterSocial.objects.all()
-    footer_address = FooterAddress.objects.all()
-    profile_header = ProfileHeader.objects.all()
+# def website_blog(request):
+#     abouts = About.objects.all()
+#     portfolios = Portfolio.objects.all()
+#     footer_social = FooterSocial.objects.all()
+#     footer_address = FooterAddress.objects.all()
+#     profile_header = ProfileHeader.objects.all()
 
-    context = {
-        'abouts': abouts,
-        'portfolios': portfolios,
-        'footer_social' : footer_social,
-        'footer_address': footer_address,
-        'profile_header': profile_header
-        }
+#     context = {
+#         'abouts': abouts,
+#         'portfolios': portfolios,
+#         'footer_social' : footer_social,
+#         'footer_address': footer_address,
+#         'profile_header': profile_header
+#         }
 
-    return render(request, 'blog/index.html', context)
+#     return render(request, 'blog/index.html', context)

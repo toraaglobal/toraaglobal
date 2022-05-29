@@ -70,3 +70,6 @@ class ProfileHeader(models.Model):
     name = models.CharField(max_length=255)
     specialization =  models.CharField(max_length=255)
     picture = models.ImageField(upload_to='portfolio_images/')
+
+
+

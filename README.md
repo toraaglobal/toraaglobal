@@ -33,3 +33,11 @@ Run the app
 python manage.py runserver
 ```
 visit `http://127.0.0.1:8000/` on your browser
+
+
+
+
+**Sync app without migration**
+```
+python manage.py migrate --run-syncdb 
+```

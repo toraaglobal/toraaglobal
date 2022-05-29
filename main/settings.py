@@ -44,6 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'website',
+    'accounts',
+    'crispy_forms',
+    'tinymce',
+    'blog',
+
 ]
 
 MIDDLEWARE = [
@@ -133,3 +138,21 @@ if DEV_ENV == 'shared':
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+
+#authenticated_url
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_REDIRECT_URL = '/blog'
+LOGOUT_REDIRECT_URL = '/accounts'
+AUTH_USER_MODEL = 'accounts.User'
+
+
+# tinymce_configrations
+TINYMCE_JS_URL = os.path.join(MEDIA_URL, "tinymce/js/tinymce/tinymce.min.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "tinymce")
+
+
+
+# crispy config
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

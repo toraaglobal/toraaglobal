@@ -38,7 +38,7 @@
                      <div class="divider-custom-line"></div>
                  </div>
                  <!-- Masthead Subheading-->
-                 <p class="masthead-subheading font-weight-light mb-0"> profile.specialization </p>
+                 <p class="masthead-subheading font-weight-light mb-0"> {{profile.specialization}} </p>
 
                 {% endfor %}
 
@@ -132,7 +132,7 @@
 
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="{{ about.picture.url }}" target="blank">
+                    <a class="btn btn-xl btn-outline-light" href="{{ about.picture.url }}#toolbar=0" target="blank">
                         <i class="fas fa-download me-2"></i>
                         {{ about.action }}
                     </a>

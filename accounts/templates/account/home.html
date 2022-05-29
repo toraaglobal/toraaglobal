@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css?family=Caveat|Poppins:400,500,600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2dda32da93.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href="{% static 'accounts/css/home.css' %}">
+
+    
+    <title> Analytics & Data Science  </title>
+
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'website/css/styles.css' %}" rel="stylesheet" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W1WDN38E18"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-W1WDN38E18');
+    </script>
+
+</head>
+<body>
+    <div id="bi">
+        <div id= "nav">
+
+            <a href="{% url 'home' %}"><img class= "logo" style="width: 120px; height: 80px;" src="{% static 'website/assets/img/passport.PNG' %}" alt="logo"/></a>
+
+        <div class="menu">
+
+            
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'contact' %}">Contact Us</a>
+            <a class= "menu-item" href="{% url 'login' %}">Sign in</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a href="{% url 'signup' %}"><button class= "primary-button" style="background-color: #0078b4;">Get Started</button></a>
+        </div>
+        </div>
+
+        <!-- <div id= "landing-section">
+            <div class= "land" style="margin-top: 140px;">
+            <h1 style="font-size: 45px; letter-spacing: 2px; font-weight: 500;">Feel the blogging experience to create your unique and dynamic blog with<p style="color: #0078b4; margin-bottom: 0px; font-size: 60px; margin-top: 30px;"> Toraaglobal Analytics</p></h1>
+            <p class= "pera" style="color: white; text-shadow: 1px 2px 2px rgb(11, 11, 86); " >We provides you a creative and dynamic platform that you need to post your blog, a world class support system and more 
+                We provides you a creative and dynamic platform that you need to post your blog. Brootblog is a user-friendly way for people all over the world to create any kind of blog. Our world class support system will be here for you to help you  and many more </p>
+        </div> -->
+
+        </div>
+
+
+
+        </div>
+
+
+<!-- 
+        <div id= "cards">
+
+            <div class="row justify-content-center">
+
+            {% if not portfolios %}
+                <div class="alert alert-warning text-center" style="border-radius: 100px;" role="alert">
+                    No project exists right now!
+                </div>
+            {% endif %}
+
+          
+
+            {% for portfolio in portfolios %}
+
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#{{ portfolio.target }}">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{{ portfolio.picture.url }}"  alt="..." />
+                    <p class="mb-4"> {{ portfolio.content }}  </p> 
+                </div>
+               <h6>  <a href="{{ portfolio.portfolio_link}}" target="blank"> {{ portfolio.title }}  GitHub Repo. </a> </h6> 
+            </div>
+            
+
+
+            {% endfor %}
+            </div>
+
+        </div> -->
+
+
+
+
+
+        <div id= "page3i">
+
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+
+            </div>
+
+            <h3>Crypto News</h3>
+
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+
+            </div>
+        </div>
+
+          <!-- ##### Blog Area Start ##### -->
+            <ul>
+                <div class="container">
+                    <div class="row">
+                    {% for x in api.Data %}
+                        <div class="col-sm" > 
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ x.title }}</h5>
+                                <p class="card-text"> {{ x.body }}</p>
+                                <a href="{{ x.url }}" target="blank" class="btn btn-secondary"> Read More...</a>
+                                </div>
+                            </div>
+                        </div>    
+
+                    {% endfor %}
+                </div>  
+                    </div>
+            </ul>
+            <!-- ##### Blog Area End ##### -->
+
+
+
+
+<!--             
+            <div id= page4>
+                <div id= "page4i">
+                    <h3>Fresh Blog</h3>
+                    <h2>Testimonials!</h2>
+                    <p>According to experts, any habit can be formed in 21 days. The same statement applies to habit of Reading.</p>
+               </div>
+               <div id= "card4">
+                   <div class= "card4i">
+                      <img class= "img4" src="https://mobirise.com/extensions/organicamp/assets/images/face5.jpg"/>
+                      <p>Brootblog is a great place to read and learn from a wide range of authors. It’s not muddied up by ads. It’s not fake news. It feels like one of the few pure places to go online.</p>
+                      <h3>VERONICA KING</h3>
+                      <h4>Reader</h4>    
+                  </div>
+                   <div id= "ht" class= "card4i">
+                       <img class= "img4" src="https://mobirise.com/extensions/organicamp/assets/images/face6.jpg"/>
+                       <p> Brootblog is trying to shift the paradigm. They’re catering to those looking for fresh, new, authentic voices. I believe wholeheartedly in their mission.</p>
+                       <h3>JIM CASH</h3>
+                       <h4>Reader</h4>    
+                   </div>
+                   <div class= "card4i">
+                      <img class= "img4" src="https://mobirise.com/extensions/organicamp/assets/images/face7.jpg"/>
+                      <p>In a web full of pseudo thought-leaders, Medium is the one place that I can reliably come to and be better informed in the easiest way possible of the things that matter to me.</p>
+                      <h3>PETER GOODMAN</h3>
+                      <h4>Blogger</h4>    
+                   </div>
+               </div>
+            </div> -->
+
+
+   
+        
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small> 
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">toraaglobal</a>
+            
+            </div>
+        </div>
+
+      
+
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'website/js/scripts.js' %}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+</body>
+</html>
