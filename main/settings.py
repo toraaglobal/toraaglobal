@@ -100,9 +100,9 @@ elif DEV_ENV == 'shared':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql', 
-            'NAME': os.environ.get('database'),
-            'USER': os.environ.get('usermysql'),
-            'PASSWORD': os.environ.get('passwordmysql'),
+            'NAME': os.environ.get('dbname'),
+            'USER': os.environ.get('user'),
+            'PASSWORD': os.environ.get('password'),
             'HOST': '127.0.0.1',
             'PORT': '3306',
         }
