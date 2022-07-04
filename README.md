@@ -41,3 +41,17 @@ visit `http://127.0.0.1:8000/` on your browser
 ```
 python manage.py migrate --run-syncdb 
 ```
+
+
+**dump database data**
+```
+$ python manage.py dumpdata --natural-foreign --natural-primary -e contenttypes -e auth.Permission --indent 2 > dump.json
+
+```
+
+
+**Load data**
+```
+python manage.py loaddata dump.json
+
+```

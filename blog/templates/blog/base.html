@@ -17,17 +17,25 @@
 </head>
 <body>
     <div id= "nav">
-        <a href="{% url 'home' %}"><img class= "logo" style="width: 120px; height: 80px;" src="{% static 'website/assets/img/passport.PNG' %}" alt="logo"/></a>
+        <a href="{% url 'post' %}"><img class= "logo" style="width: 120px; height: 80px;" src="{% static 'website/assets/img/passport.PNG' %}" alt="logo"/></a>
     <div class="menu">
-        <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
+        <!-- <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
         <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
         <a class= "menu-item" href="{% url 'profile' %}">MY Profile</a>
-        <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
-        <button class= "primary-button" style="background-color: #0078b4;">
+        <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a> -->
+        <!-- <button class= "primary-button" style="background-color: #0078b4;"> -->
             {% if user.is_authenticated %}
-                <p class= "menu-item">{{ user.get_username }}  <span class = 'logout' ><a style="color: white;" href = "{% url 'logout' %}">Logout</a></span></p>
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
+            <a class= "menu-item" href="{% url 'profile' %}">MY Profile</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
+            <p class= "menu-item">{{ user.get_username }}  <span class = 'logout' ><a style="color: white;" href = "{% url 'logout' %}">Logout</a></span></p>
                
             {% else %}
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
                <p><a style="color: white;" href= "{% url 'login' %}">Login</a></p>
             {% endif %}
        </button>

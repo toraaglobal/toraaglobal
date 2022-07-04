@@ -7,6 +7,7 @@ from blog.models import Category
 from accounts.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
 
+from django.contrib import messages
 # Create your views here.
 # def index(request,*args,**kwargs):
 #     posts = post.objects.filter(status = "D")
@@ -66,6 +67,7 @@ class Contact_form_view(FormView):
 
     def form_valid(self,form):
         print(form.cleaned_data)
+      
         return super().form_valid(form)
 
 # def post_form_view(request,*args,**kwargs):

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'tinymce',
     'blog',
 
+    'django_crontab',
+
 ]
 
 MIDDLEWARE = [
@@ -173,8 +175,8 @@ else:
 
 
 #authenticated_url
-LOGIN_REDIRECT_URL = '/blog'
-LOGOUT_REDIRECT_URL = '/accounts'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'accounts.User'
 
 
@@ -221,3 +223,13 @@ LOGGING = {
         },
     },
 }
+
+
+
+
+# cron jobs
+CRONJOBS = [
+    # references https://en.wikipedia.org/wiki/Cron#Format
+    # https://pypi.org/project/django-crontab/
+    ('* */4 * * *', 'blog.cron.seed_crypto_new'),
+]   

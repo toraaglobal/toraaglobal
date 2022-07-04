@@ -41,4 +41,23 @@ class post(models.Model):
         return reverse('detail-page', kwargs={'slug':self.slug})
 
    
-    
+
+
+
+class CrytoNew(models.Model):
+    id=models.BigIntegerField(unique=True, primary_key=True)
+    guid = models.CharField(max_length=256)
+    imageurl = models.CharField(max_length=256)
+    title = models.CharField(max_length=256)
+    description = models.TextField(max_length=2000)
+    url = models.TextField(max_length=2000)
+    published_on = models.DateTimeField()
+    category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name='cryptos')
+
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        ordering = ['-published_on']
+

@@ -4,13 +4,16 @@ from blog.models import post
 from accounts.models import User
 from tinymce.widgets import TinyMCE
 
+from website.models import Contact
+
+
+
 class Contactform(forms.Form):
-    countries = [("IN","INDIA"),("USA","AMERICA")]
+   
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'special'}))
     email = forms.EmailField(required=False)
     phone = forms.RegexField(regex="^[6-9][0-9]{9}$",required=False)
     massage = forms.CharField(max_length=500)
-    country = forms.ChoiceField(choices=countries) 
 
     def clean(self):
         cleaned_data = super().clean()
@@ -18,6 +21,11 @@ class Contactform(forms.Form):
         phone = cleaned_data.get("phone")
         if email == '' and phone == '':
             raise forms.ValidationError("Atleast email or phone number should be provided" ,code= "invalid")
+
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
 
 class Postform(forms.ModelForm):
     content = forms.CharField(widget=TinyMCE(attrs={'cols': 18, 'rows': 10}))

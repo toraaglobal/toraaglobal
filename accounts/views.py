@@ -11,6 +11,8 @@ import json
 import requests
 
 from website.models import *
+from blog.models import CrytoNew
+
 # Create your views here.
 class Signup_create_view(CreateView):
     form_class = Signupform
@@ -30,13 +32,16 @@ class HomePageView(TemplateView):
         api_request = requests.get('https://min-api.cryptocompare.com/data/v2/news/?lang=EN')
         api = json.loads(api_request.content)
 
+        cryptos = CrytoNew.objects.all()[:4]
+
         context = {
         'abouts': abouts,
         'portfolios': portfolios,
         'footer_social' : footer_social,
         'footer_address': footer_address,
         'profile_header': profile_header,
-        'api' : api
+        'api' : api,
+        'cryptos': cryptos
         
         }
 

@@ -32,19 +32,30 @@
 
 </head>
 <body>
-    <div id="bi">
+    
         <div id= "nav">
 
             <a href="{% url 'home' %}"><img class= "logo" style="width: 120px; height: 80px;" src="{% static 'website/assets/img/passport.PNG' %}" alt="logo"/></a>
 
         <div class="menu">
-
+           
             
+            {% if user.is_authenticated %}
             <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
-            <a class= "menu-item" href="{% url 'contact' %}">Contact Us</a>
-            <a class= "menu-item" href="{% url 'login' %}">Sign in</a>
+            <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
+            <a class= "menu-item" href="{% url 'profile' %}">MY Profile</a>
             <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
-            <a href="{% url 'signup' %}"><button class= "primary-button" style="background-color: #0078b4;">Get Started</button></a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
+            <p class= "menu-item">{{ user.get_username }}  <span class = 'logout' ><a style="color: white;" href = "{% url 'logout' %}">Logout</a></span></p>
+               
+            {% else %}
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
+               <p><a style="color: white;" href= "{% url 'login' %}">Login</a></p>
+            {% endif %}
+
+            <!-- <a href="{% url 'signup' %}"><button class= "primary-button" style="background-color: #0078b4;">Get Started</button></a> -->
         </div>
         </div>
 
@@ -59,7 +70,6 @@
 
 
 
-        </div>
 
 
 <!-- 
@@ -119,22 +129,43 @@
         </div>
 
           <!-- ##### Blog Area Start ##### -->
+         
             <ul>
                 <div class="container">
                     <div class="row">
-                    {% for x in api.Data %}
+                        {% if not cryptos %}
+                            {% for x in api.Data %}
+                                <div class="col-sm" > 
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{ x.title }}</h5>
+                                        <p class="card-text"> {{ x.body }}</p>
+                                        <a href="{{ x.url }}" target="blank" class="btn btn-secondary"> Read More...</a>
+                                        </div>
+                                    </div>
+                                </div>    
+
+                            {% endfor %}
+
+                        {% endif %}
+
+              
+                        {% for crypto in cryptos %}
                         <div class="col-sm" > 
                             <div class="card" style="width: 18rem;">
-                                <img src="{{ x.imageurl }}" class="card-img-top" alt="{{ x.source }}">
+                                <img src="{{ crypto.imageurl }}" class="card-img-top" alt="{{ crypto.url }}">
                                 <div class="card-body">
-                                <h5 class="card-title">{{ x.title }}</h5>
-                                <p class="card-text"> {{ x.body }}</p>
-                                <a href="{{ x.url }}" target="blank" class="btn btn-secondary"> Read More...</a>
+                                <h5 class="card-title">{{ crypto.title }}</h5>
+                                <p class="card-text"> {{ crypto.body }}</p>
+                                <a href="{{ crypto.url }}" target="blank" class="btn btn-secondary"> Read More...</a>
                                 </div>
                             </div>
                         </div>    
+              
+                        {% endfor %}
 
-                    {% endfor %}
+                   
                 </div>  
                     </div>
             </ul>

@@ -6,7 +6,7 @@
     <body id="page-top">
       
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
+        <header class="masthead bg-primary text-white text-center"  style="background-color:#1c87c9;">
             <div class="container d-flex align-items-center flex-column">
                 {% if not profile_header %}
 
@@ -151,73 +151,6 @@
         {% endfor %}
 
 
-
-        <!-- Contact Section-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-
-                        
-
-                        <div class="col col-md-12">
-                            <div class="contact-form-area">
-                                <div class="section-title-s3 section-title-s5">
-                                </div>
-                             
-                                {% for message in messages %}
-                                    <br>
-                                    <div class="alert alert-success" style="border-radius: 100px;" role="alert">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                                <div class="contact-form">
-                                    <form method="post" action="">
-                                        {% csrf_token %}
-                                        <div>
-                                            {{ form.name }}
-                                        </div>
-                                        <div>
-                                            {{ form.email }}
-                                        </div>
-                                        <div>
-                                            {{ form.phone }}
-                                        </div>
-                                     
-                                        <div class="comment-area">
-                                            {{ form.message }}
-                                        </div>
-                                        <div class="submit-area">
-                                            <button type="submit" class="theme-btn">Submit Now</button>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>                    
-                    </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
 

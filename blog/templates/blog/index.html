@@ -31,17 +31,27 @@
         <a href="{% url 'home' %}"><img class= "logo" style="width: 120px; height: 80px;" src="{% static 'website/assets/img/passport.PNG' %}" alt="logo"/></a>
     <div class="menu">
 
-        <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+        <!-- <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
         <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
        
         <a class= "menu-item" href="{% url 'profile' %}">MY Profile</a>
         <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
-        <button class= "primary-button" style="background-color: #0078b4;">
+        <button class= "primary-button" style="background-color: #0078b4;"> -->
             {% if user.is_authenticated %}
-                <p class= "menu-item">{{ user.get_username }}  <span class = 'logout' ><a style="color: white;" href = "{% url 'logout' %}">Logout</a></span></p>
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'create-post' %}">Create Post</a>
+        
+            <a class= "menu-item" href="{% url 'profile' %}">MY Profile</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
+                <p class= "menu-item">{{ user.get_username }}  <span class = 'logout' ><a style="color: rgb(9, 9, 9);" href = "{% url 'logout' %}">Logout</a></span></p>
                
             {% else %}
-               <p ><a style="color: white;" href= "{% url 'login' %}">Login</a></p>
+            <a class= "menu-item" href="{% url 'post' %}">Blogs</a>
+            <a class= "menu-item" href="{% url 'website_home' %}">Portfolio</a>
+            <a class= "menu-item" href="{% url 'home' %}">Crypto News</a>
+            <a style="color: rgb(7, 7, 7);" href= "{% url 'login' %}">Login</a>
+
             {% endif %}
        </button>
     </div>  
