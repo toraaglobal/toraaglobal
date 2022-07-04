@@ -20,6 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from accounts.views import HomePageView
 
+admin.site.site_header = 'Toraaglobal'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('',HomePageView.as_view(),name= 'home'),
