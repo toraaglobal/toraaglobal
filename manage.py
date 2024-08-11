@@ -2,13 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import pymysql
-import dotenv
-pymysql.install_as_MySQLdb()
+
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "main.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -20,8 +18,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
-    dotenv.load_dotenv(
-        os.path.join(os.path.dirname(__file__), '.env')
-    )
+if __name__ == "__main__":
     main()
