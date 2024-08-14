@@ -97,7 +97,7 @@ copyright: Copyright &copy; 2023  Tajudeen Abdulazeez
 
 nav:
   - Home: 
-    - All About Data: index.md 
+    - About me: index.md 
     - Credentials: credentials.md 
     - Portfolio: '#'
     - Youtube: 'https://www.youtube.com/@DataCraftMasters/about'
