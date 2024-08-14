@@ -1,4 +1,4 @@
-site_name: Data Analytics and Machine Learning
+site_name: DataOps, DevOps and MLOps
 
 repo_url: https://github.com/toraaglobal/toraaglobal
 repo_name: toraaglobal/toraaglobal
@@ -97,7 +97,7 @@ copyright: Copyright &copy; 2023  Tajudeen Abdulazeez
 
 nav:
   - Home: 
-    - About me: index.md 
+    - About me: index.md
     - Credentials: credentials.md 
     - Portfolio: '#'
     - Youtube: 'https://www.youtube.com/@DataCraftMasters/about'
