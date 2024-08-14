@@ -10,21 +10,32 @@ Welcome to the Toraaglobal repository! This project is built using Django and se
 ***
 The website is designed to provide a professional and accessible platform for potential clients, collaborators, and employers to explore the work done by Tajudeen Abdulazeez. It includes detailed sections for various projects, a blog, and other relevant information about his professional skills and expertise.
 
+
 ### Features
 ***
+
 **Home Page**: A welcoming page with an introduction to Tajudeen Abdulazeez.
-**Portfolio**: A section dedicated to showcasing various personal and professional projects, with detailed descriptions and links to relevant resources.
+
+**Portfolio**: A section dedicated to showcasing various personal and professional projects, with detailed 
+descriptions and links to relevant resources.
+
 **Blog**: Regular updates, articles, and insights related to data engineering, data science, and other topics of interest.
+
 **About**: Information about Tajudeen Abdulazeez, its mission, vision, and his professional background.
+
 **Contact**: A contact form and details for reaching out to Tajudeen Abdulazeez for inquiries or collaboration.
 
 
 ### Technologies Used
 ***
 **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+
 **HTML/CSS/JavaScript**: For the front-end development and ensuring a responsive and user-friendly interface.
+
 **PostgreSQL**: The database used for storing project details, blog posts, and other dynamic content.
+
 **Bootstrap**: For styling and responsive design to ensure the website looks great on all devices.
+
 
 
 ### Installation
