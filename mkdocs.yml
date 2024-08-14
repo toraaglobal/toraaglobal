@@ -1,1 +1,119 @@
-site_name: My Docs
+site_name: Data Analytics and Machine Learning
+
+repo_url: https://github.com/toraaglobal/toraaglobal
+repo_name: toraaglobal/toraaglobal
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+   
+ 
+
+
+  icon:
+    repo: fontawesome/brands/git-alt 
+    edit: material/pencil 
+    view: material/eye
+
+  logo: assets/logo.png 
+
+  palette: 
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: light blue
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - scheme: default
+      primary: light blue
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+
+plugins:
+
+  - git-revision-date-localized:
+      enable_creation_date: true
+
+  - glightbox:
+       touchNavigation: true
+       loop: false
+       effect: zoom
+       slide_effect: slide
+       width: 100%
+       height: auto
+       zoomable: true
+       draggable: true
+       skip_classes:
+         - custom-skip-class-name
+       auto_caption: false
+       caption_position: bottom
+
+  - blog:
+      post_date_format: full
+      archive_toc: true 
+
+
+  - search:
+      lang: en
+
+markdown_extensions:
+  - tables
+  - attr_list
+
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/tajudeenolarewajuabdulazeez/
+      name: linkedin
+
+    - icon: fontawesome/brands/github
+      link: https://github.com/tabdulazeez
+      name: github
+
+
+copyright: Copyright &copy; 2023  Tajudeen Abdulazeez 
+
+
+
+nav:
+  - Home: 
+    - All About Data: index.md 
+    - Credentials: credentials.md 
+    - Portfolio: '#'
+    - Youtube: 'https://www.youtube.com/@DataCraftMasters/about'
+    
+    
+  - Data Science On AWS: 
+    - Register, Analyze and Visualize Data: datascience_on_aws/viz_and_analyze_data.md
+    - Detect data bias with Amazon SageMaker Clarify: datascience_on_aws/detect_bias_amazon_sagemaker_clarify.md
+    - Train a model with Amazon SageMaker Autopilot: datascience_on_aws/sagemaker_autopilot.md
+    - Train a text classifier using Amazon SageMaker BlazingText built-in algorithm: datascience_on_aws/sagemaker_blazing_text_built_in_algos.md
+    - Feature transformation with Amazon SageMaker processing job and Feature Store: datascience_on_aws/sagemaker_feature_store.md
+    - Train a review classifier with BERT and Amazon SageMaker: datascience_on_aws/classifier_bert_amazon_sagemaker.md
+    - Optimize models using Automatic Model Tuning:  datascience_on_aws/automatic_model_tuning.md
+    - AB Testing and Auto Scaling:  datascience_on_aws/ab_testing_auto_scaling.md
+
+    
+    
+  - Blog:
+     - Blog Home: blog/index.md 
