@@ -36,6 +36,10 @@ descriptions and links to relevant resources.
 
 **Bootstrap**: For styling and responsive design to ensure the website looks great on all devices.
 
+**mkdocs**: MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation.
+
+
+
 
 
 ### Installation
