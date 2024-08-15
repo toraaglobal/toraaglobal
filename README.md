@@ -74,9 +74,95 @@ python manage.py runserver
 
 The website should now be accessible at http://127.0.0.1:8000/.
 
-### Contributing
-***
-We welcome contributions to improve the website! Please fork the repository, make your changes, and submit a pull request. Be sure to adhere to the code style and include relevant tests where necessary.
+
+### Deployment on Namecheap Shared Hosting
+Deploying a Django project on Namecheap shared hosting requires some additional steps due to the limitations of shared hosting environments. Here’s how to do it:
+
+####  Set Up Python on Namecheap
+- Log In to cPanel: Access your Namecheap account and log in to your cPanel.
+- Select Setup Python App: In the Software section, select Setup Python App.
+- Create a New Application:
+    - Choose your Python version (e.g., Python 3.x).
+    - Set the application root directory (e.g., /home/username/toraaglobal).
+    - Set the application URL (e.g., www.toraaglobal.com).
+    - Set the application startup file (usually passenger_wsgi.py).
+
+#### Prepare Your Django Project
+- Create passenger_wsgi.py:
+In the root directory of your Django project, create a passenger_wsgi.py file with the following content:
+```
+import sys
+import os
+
+# Add your project directory to the sys.path
+sys.path.insert(0, '/home/username/toraaglobal')
+
+# Set the settings module
+os.environ['DJANGO_SETTINGS_MODULE'] = 'toraaglobal.settings'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+```
+
+- Install Dependencies:
+
+ - In cPanel’s Python App settings, navigate to your app and open the terminal.
+
+ - Install your dependencies using pip:
+    ```
+    pip install -r /home/username/toraaglobal/requirements.txt
+
+    ```
+
+- Configure Database:
+    - Namecheap shared hosting typically uses MySQL, so update your DATABASES setting in settings.py to use MySQL:
+    ```
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'database_name',
+            'USER': 'database_user',
+            'PASSWORD': 'database_password',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
+    ```
+
+- Migrate the Database:
+Run the migrations to set up the database:
+
+```
+python manage.py migrate
+
+```
+
+- Configure Static Files
+    - Collect Static Files:Run the command to collect static files:
+        ```
+        python manage.py collectstatic
+
+        ```
+    - Serve Static Files: You may need to configure your .htaccess file to serve static files correctly. Add the following in your .htaccess file located in the public_html directory:
+        ```
+        Alias /static/ /home/username/toraaglobal/static/
+
+        <Directory /home/username/toraaglobal/static>
+            Require all granted
+        </Directory>
+        ```
+
+-  Final Steps
+    - Update ALLOWED_HOSTS: In your settings.py, ensure that ALLOWED_HOSTS includes your domain name:
+        ```
+        ALLOWED_HOSTS = ['www.toraaglobal.com']
+
+        ```
+    - Restart Your Application:
+    In cPanel, go to the Python App settings and restart your application to apply all changes.
+Once completed, your Django project should be live and running on Namecheap shared hosting.
+
+
 
 
 ### License
