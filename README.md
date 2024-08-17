@@ -164,7 +164,6 @@ Once completed, your Django project should be live and running on Namecheap shar
 
 
 
-
 ### License
 ***
 This project is licensed under the MIT License. See the LICENSE file for more details.
