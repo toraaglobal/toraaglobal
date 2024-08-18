@@ -7,12 +7,14 @@ categories:
   - Machine Learning
   - Railway
   - FastAPI 
+  - Docker 
 ---
 
 # Deploying a Wine Prediction Model Using FastAPI on Railway
-In the world of data science, creating a machine learning model is only half the battle. The real challenge lies in deploying that model so it can be accessed and utilized by end users. In this blog post, I'll walk you through how to deploy a wine prediction model using FastAPI and Railway, an efficient and modern web framework for Python that allows you to easily build APIs. We'll also reference the GitHub repository where the code for this project is hosted: [Toraaglobal/deploy-model-using-fastapi.](https://github.com/toraaglobal/deploy-model-using-fastapi)
 
+In the world of data science, creating a machine learning model is only half the battle. The real challenge lies in deploying that model so it can be accessed and utilized by end users. In this blog post, I'll walk you through how to deploy a wine prediction model using FastAPI and Railway, an efficient and modern web framework for Python that allows you to easily build APIs. We'll also reference the GitHub repository where the code for this project is hosted: [Toraaglobal/deploy-model-using-fastapi.](https://github.com/toraaglobal/deploy-model-using-fastapi)
 <!-- more -->
+
 
 ## Overview of the Wine Prediction Model
 The wine prediction model is built using a classifier that predicts the class of a wine based on various chemical properties. The model is saved as a pickle file and loaded into a FastAPI application to serve predictions via a RESTful API.
@@ -154,3 +156,4 @@ Railway provides logs and metrics to help you monitor the performance of your si
 By following this guide, you should now have a good understanding of how to deploy a machine learning model using FastAPI and Rail. This setup allows you to easily serve predictions through a RESTful API, making your model accessible to users or other systems. For the complete code and more details, visit the [GitHub repository.](https://github.com/toraaglobal/deploy-model-using-fastapi)
 
 Happy coding!
+
