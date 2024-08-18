@@ -1,6 +1,7 @@
 ***
-## Toraaglobal
+## [Toraaglobal](https://toraaglobal.github.io/toraaglobal/)
 ***
+[Link to static website and blog](https://toraaglobal.github.io/toraaglobal/)
 ***
 
 Welcome to the Toraaglobal repository! This project is built using Django and serves as the official portfolio website for [Tajudeen Abdulazeez](https://www.linkedin.com/in/tajudeenolarewajuabdulazeez/). The website showcases a comprehensive portfolio of personal projects, professional achievements, and other relevant content to present the expertise and capabilities of Tajudeen Abdulazeez.
