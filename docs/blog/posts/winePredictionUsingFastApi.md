@@ -9,7 +9,7 @@ categories:
   - FastAPI 
 ---
 
-## Deploying a Wine Prediction Model Using FastAPI on Railway
+# Deploying a Wine Prediction Model Using FastAPI on Railway
 In the world of data science, creating a machine learning model is only half the battle. The real challenge lies in deploying that model so it can be accessed and utilized by end users. In this blog post, I'll walk you through how to deploy a wine prediction model using FastAPI and Railway, an efficient and modern web framework for Python that allows you to easily build APIs. We'll also reference the GitHub repository where the code for this project is hosted: [Toraaglobal/deploy-model-using-fastapi.](https://github.com/toraaglobal/deploy-model-using-fastapi)
 
 <!-- more -->
