@@ -6,7 +6,9 @@
 
 ![](assets/logo__.jpeg)          |   Tajudeen Abdulazeez is a versatile professional with a background in Geo-science and a Master's degree in Applied Data Science. Certified Google Professional Data Engineer with expertise in building end-to-end data science solutions. With a commitment to continuous learning, he bridge his analytical insights with data-driven acumen, embodying the synergy between evolving technology and diverse expertise.
 :-------------------------:|:-------------------------:
-[My website](weblinks.md){ .md-button target='_blank' }      | [More about me](aboutme.md){ .md-button }     
+[My Resume](Resume.pdf){ .md-button }      | [More about me](aboutme.md){ .md-button }    
+                                         |  [My website](weblinks.md){ .md-button target='_blank' } 
+
 
 
 Welcome to our cutting-edge data blog, your go-to resource for all things related to the intricate world of data. From the foundational concepts of data science and data engineering to the complexities of databases, data pipelines, and data analytics, we're here to unravel the mysteries that data holds.
