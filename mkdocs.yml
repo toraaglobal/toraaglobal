@@ -99,8 +99,8 @@ nav:
   - Home: 
     - I am Tajudeen Abdulazeez: index.md
     - Credentials: credentials.md 
-    - Portfolio: '#'
-    - Youtube: 'https://www.youtube.com/@DataCraftMasters/about'
+    - Portfolio: 'portfolio.md'
+    - Youtube: 'https://www.youtube.com/@toraaglobal/videos'
     
     
   - Data Science On AWS: 
