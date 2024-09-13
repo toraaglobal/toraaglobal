@@ -13,6 +13,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+  const [activeTab, setActiveTab] = useState("query"); // State for active tab
   const sessionIdRef = useRef<string>(uuidv4());
 
   useEffect(() => {
@@ -132,11 +133,28 @@ function App() {
         A Basic CHAT WITH YOUR PRIVATE PDFS Rag LLM App
       </header>
       <main className="flex-grow container mx-auto p-4 flex-col">
+        {/* Tab Navigation */}
+        <div className="flex border-b border-gray-200 mb-4">
+          <button
+            className={`p-2 text-gray-800 ${activeTab === "query" ? "border-b-2 border-blue-600" : ""}`}
+            onClick={() => setActiveTab("query")}
+          >
+            Query
+          </button>
+          <button
+            className={`p-2 text-gray-800 ${activeTab === "files" ? "border-b-2 border-blue-600" : ""}`}
+            onClick={() => setActiveTab("files")}
+          >
+            File Operations
+          </button>
+        </div>
+
+        {/* Tab Content */}
         <div className="flex-grow bg-white shadow overflow-hidden sm:rounded-lg">
-          <div className="border-b border-gray-200 p-4">
-            {/* Message Section */}
-            <div className="p-4">
-              <div className="border-b border-gray-200 p-4">
+          {activeTab === "query" && (
+            <div className="border-b border-gray-200 p-4">
+              {/* Query Section */}
+              <div className="p-4">
                 {messages.map((msg, index) => (
                   <div key={index}
                     className={`p-3 my-3 rounded-lg text-gray-800 ml-auto ${msg.isUser ? "bg-blue-50" : "bg-gray-50"}`}>
@@ -174,8 +192,11 @@ function App() {
                 Send
               </button>
             </div>
-            {/* File Upload Section */}
+          )}
+
+          {activeTab === "files" && (
             <div className="p-4 bg-gray-50 border-t border-gray-200">
+              {/* File Operations Section */}
               <div className="mb-4">
                 <input
                   type="file"
@@ -197,7 +218,7 @@ function App() {
                 </button>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
       <footer className="bg-blue-100 text-gray-800 text-center p-4 text-xs border-t border-gray-200">
