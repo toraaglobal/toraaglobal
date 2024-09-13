@@ -1,4 +1,4 @@
-mport React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { v4 as uuidv4 } from 'uuid';
@@ -13,7 +13,6 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
-  const [activeTab, setActiveTab] = useState("chat");
   const sessionIdRef = useRef<string>(uuidv4());
 
   useEffect(() => {
@@ -32,27 +31,27 @@ function App() {
       }
 
       return [...prevMessages, { message: chunk, isUser: false, sources }];
-    })
-  }
+    });
+  };
 
   function handleReceiveMessage(data: string) {
     let parsedData = JSON.parse(data);
 
     if (parsedData.answer) {
-      setPartialMessage(parsedData.answer.content)
+      setPartialMessage(parsedData.answer.content);
     }
 
     if (parsedData.docs) {
-      setPartialMessage("", parsedData.docs.map((doc: any) => doc.metadata.source))
+      setPartialMessage("", parsedData.docs.map((doc: any) => doc.metadata.source));
     }
   }
 
   const handleSendMessage = async (message: string) => {
-    setInputValue("")
+    setInputValue("");
 
     setMessages(prevMessages => [...prevMessages, { message, isUser: true }]);
 
-    await fetchEventSource(http://localhost:8000/rag/stream, {
+    await fetchEventSource(`http://localhost:8000/rag/stream`, {
       method: 'POST',
       openWhenHidden: true,
       headers: {
@@ -73,14 +72,14 @@ function App() {
           handleReceiveMessage(event.data);
         }
       },
-    })
-  }
+    });
+  };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
-      handleSendMessage(inputValue.trim())
+      handleSendMessage(inputValue.trim());
     }
-  }
+  };
 
   function formatSource(source: string) {
     return source.split("/").pop() || "";
@@ -132,62 +131,52 @@ function App() {
       <header className="bg-blue-100 text-gray-800 text-center p-4 shadow-sm">
         A Basic CHAT WITH YOUR PRIVATE PDFS Rag LLM App
       </header>
-      <main className="flex-grow container mx-auto p-4">
-        <div className="flex">
-          <div className="w-1/4">
-            <nav className="bg-blue-50 p-4">
-              <ul>
-                <li className={cursor-pointer p-2 ${activeTab === "chat" ? "bg-blue-200" : ""}} onClick={() => setActiveTab("chat")}>Query</li>
-                <li className={cursor-pointer p-2 ${activeTab === "files" ? "bg-blue-200" : ""}} onClick={() => setActiveTab("files")}>File Operations</li>
-              </ul>
-            </nav>
-          </div>
-          <div className="w-3/4 p-4">
-            {activeTab === "chat" && (
-              <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-                <div className="border-b border-gray-200 p-4">
-                  {messages.map((msg, index) => (
-                    <div key={index}
-                      className={p-3 my-3 rounded-lg text-gray-800 ml-auto ${msg.isUser ? "bg-blue-50" : "bg-gray-50"}}>
-                      {msg.message}
-                      {!msg.isUser && (
-                        <div className="text-xs">
-                          <hr className="border-b mt-5 mb-5 border-gray-200"></hr>
-                          {msg.sources?.map((source, index) => (
-                            <div key={index}>
-                              <a
-                                target="_blank"
-                                download
-                                href={${"http://localhost:8000"}/rag/static/${encodeURI(formatSource(source))}}
-                                rel="noreferrer"
-                                className="text-blue-600 hover:text-blue-800"
-                              >{formatSource(source)}</a>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <div className="p-4 bg-gray-50">
-                  <textarea
-                    className="form-textarea w-full p-2 border rounded text-gray-800 bg-white border-gray-300 resize-none h-auto"
-                    placeholder="Enter your message here..."
-                    onKeyUp={handleKeyPress}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    value={inputValue}
-                  ></textarea>
-                  <button
-                    className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => handleSendMessage(inputValue.trim())}
-                  >
-                    Send
-                  </button>
-                </div>
+      <main className="flex-grow container mx-auto p-4 flex-col">
+        <div className="flex-grow bg-white shadow overflow-hidden sm:rounded-lg">
+          <div className="border-b border-gray-200 p-4">
+            {/* Message Section */}
+            <div className="p-4">
+              <div className="border-b border-gray-200 p-4">
+                {messages.map((msg, index) => (
+                  <div key={index}
+                    className={`p-3 my-3 rounded-lg text-gray-800 ml-auto ${msg.isUser ? "bg-blue-50" : "bg-gray-50"}`}>
+                    {msg.message}
+                    {!msg.isUser && (
+                      <div className={"text-xs"}>
+                        <hr className="border-b mt-5 mb-5 border-gray-200"></hr>
+                        {msg.sources?.map((source, index) => (
+                          <div key={index}>
+                            <a
+                              target="_blank"
+                              download
+                              href={`${"http://localhost:8000"}/rag/static/${encodeURI(formatSource(source))}`}
+                              rel="noreferrer"
+                              className="text-blue-600 hover:text-blue-800"
+                            >{formatSource(source)}</a>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-            )}
-            {activeTab === "files" && (
-              <div className="bg-white shadow overflow-hidden sm:rounded-lg p-4">
+              <textarea
+                className="form-textarea w-full p-2 border rounded text-gray-800 bg-white border-gray-300 resize-none h-auto"
+                placeholder="Enter your message here..."
+                onKeyUp={handleKeyPress}
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue}
+              ></textarea>
+              <button
+                className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => handleSendMessage(inputValue.trim())}
+              >
+                Send
+              </button>
+            </div>
+            {/* File Upload Section */}
+            <div className="p-4 bg-gray-50 border-t border-gray-200">
+              <div className="mb-4">
                 <input
                   type="file"
                   accept=".pdf"
@@ -207,7 +196,7 @@ function App() {
                   Load and Process PDFs
                 </button>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </main>
