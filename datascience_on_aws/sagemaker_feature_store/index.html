@@ -1,0 +1,2383 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../sagemaker_blazing_text_built_in_algos/">
+      
+      
+        <link rel="next" href="../classifier_bert_amazon_sagemaker/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b0">
+    
+    
+      
+        <title>Feature transformation with Amazon SageMaker processing job and Feature Store - DataOps, DevOps and MLOps</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0c456da8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#feature-transformation-with-amazon-sagemaker-processing-job-and-feature-store" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DataOps, DevOps and MLOps" class="md-header__button md-logo" aria-label="DataOps, DevOps and MLOps" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DataOps, DevOps and MLOps
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Feature transformation with Amazon SageMaker processing job and Feature Store
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/toraaglobal/toraaglobal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toraaglobal/toraaglobal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../viz_and_analyze_data/" class="md-tabs__link">
+          
+  
+  Data Science On AWS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DataOps, DevOps and MLOps" class="md-nav__button md-logo" aria-label="DataOps, DevOps and MLOps" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    DataOps, DevOps and MLOps
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/toraaglobal/toraaglobal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toraaglobal/toraaglobal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    I am Tajudeen Abdulazeez
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credentials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credentials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Portfolio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.youtube.com/@toraaglobal/videos" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Youtube
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data Science On AWS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Data Science On AWS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viz_and_analyze_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Register, Analyze and Visualize Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detect_bias_amazon_sagemaker_clarify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detect data bias with Amazon SageMaker Clarify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_autopilot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train a model with Amazon SageMaker Autopilot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_blazing_text_built_in_algos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train a text classifier using Amazon SageMaker BlazingText built-in algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Feature transformation with Amazon SageMaker processing job and Feature Store
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Feature transformation with Amazon SageMaker processing job and Feature Store
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#feature-transformation-with-amazon-sagemaker-processing-job-and-feature-store" class="md-nav__link">
+    Feature transformation with Amazon SageMaker processing job and Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature transformation with Amazon SageMaker processing job and Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configure-the-sagemaker-feature-store" class="md-nav__link">
+    1. Configure the SageMaker Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Configure the SageMaker Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configure-dataset" class="md-nav__link">
+    1.1. Configure dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configure-the-sagemaker-feature-store" class="md-nav__link">
+    1.2. Configure the SageMaker feature store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transform-the-dataset" class="md-nav__link">
+    2. Transform the dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Transform the dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-cell-will-take-approximately-1-2-minutes-to-run" class="md-nav__link">
+    This cell will take approximately 1-2 minutes to run.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-cell-will-take-approximately-15-minutes-to-run" class="md-nav__link">
+    This cell will take approximately 15 minutes to run.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-query-the-feature-store" class="md-nav__link">
+    3. Query the Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Query the Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-export-training-validation-and-test-datasets-from-the-feature-store" class="md-nav__link">
+    3.1. Export training, validation, and test datasets from the Feature Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-export-tsv-from-feature-store" class="md-nav__link">
+    3.2. Export TSV from Feature Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-check-that-the-dataset-in-the-feature-store-is-balanced-by-sentiment" class="md-nav__link">
+    3.3. Check that the dataset in the Feature Store is balanced by sentiment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-5" class="md-nav__link">
+    Exercise 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-6" class="md-nav__link">
+    Exercise 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-7" class="md-nav__link">
+    Exercise 7
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classifier_bert_amazon_sagemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train a review classifier with BERT and Amazon SageMaker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automatic_model_tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimize models using Automatic Model Tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ab_testing_auto_scaling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AB Testing and Auto Scaling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/data-mining/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Mining
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/data-science/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Science
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FastAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/generative-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generative AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/llm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/machine-learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Machine Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/r/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/railway/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Railway
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/remote-sensing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote Sensing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/software-development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/team-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Team Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/time-series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Time Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#feature-transformation-with-amazon-sagemaker-processing-job-and-feature-store" class="md-nav__link">
+    Feature transformation with Amazon SageMaker processing job and Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature transformation with Amazon SageMaker processing job and Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configure-the-sagemaker-feature-store" class="md-nav__link">
+    1. Configure the SageMaker Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Configure the SageMaker Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configure-dataset" class="md-nav__link">
+    1.1. Configure dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configure-the-sagemaker-feature-store" class="md-nav__link">
+    1.2. Configure the SageMaker feature store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1" class="md-nav__link">
+    Exercise 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transform-the-dataset" class="md-nav__link">
+    2. Transform the dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Transform the dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2" class="md-nav__link">
+    Exercise 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-cell-will-take-approximately-1-2-minutes-to-run" class="md-nav__link">
+    This cell will take approximately 1-2 minutes to run.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3" class="md-nav__link">
+    Exercise 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-cell-will-take-approximately-15-minutes-to-run" class="md-nav__link">
+    This cell will take approximately 15 minutes to run.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-query-the-feature-store" class="md-nav__link">
+    3. Query the Feature Store
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Query the Feature Store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-export-training-validation-and-test-datasets-from-the-feature-store" class="md-nav__link">
+    3.1. Export training, validation, and test datasets from the Feature Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4" class="md-nav__link">
+    Exercise 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-export-tsv-from-feature-store" class="md-nav__link">
+    3.2. Export TSV from Feature Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-check-that-the-dataset-in-the-feature-store-is-balanced-by-sentiment" class="md-nav__link">
+    3.3. Check that the dataset in the Feature Store is balanced by sentiment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-5" class="md-nav__link">
+    Exercise 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-6" class="md-nav__link">
+    Exercise 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-7" class="md-nav__link">
+    Exercise 7
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/toraaglobal/toraaglobal/edit/main/docs/datascience_on_aws/sagemaker_feature_store.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/toraaglobal/toraaglobal/raw/main/docs/datascience_on_aws/sagemaker_feature_store.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+    </a>
+  
+
+
+<h2 id="feature-transformation-with-amazon-sagemaker-processing-job-and-feature-store">Feature transformation with Amazon SageMaker processing job and Feature Store</h2>
+<h3 id="introduction">Introduction</h3>
+<p>In this lab you will start with the raw <a href="https://www.kaggle.com/nicapotato/womens-ecommerce-clothing-reviews">Women's Clothing Reviews</a> dataset and prepare it to train a BERT-based natural language processing (NLP) model. The model will be used to classify customer reviews into positive (1), neutral (0) and negative (-1) sentiment.</p>
+<p>You will convert the original review text into machine-readable features used by BERT. To perform the required feature transformation you will configure an Amazon SageMaker processing job, which will be running a custom Python script.</p>
+<pre><code class="language-python"># please ignore warning messages during the installation
+!pip install --disable-pip-version-check -q sagemaker==2.35.0
+!conda install -q -y pytorch==1.6.0 -c pytorch
+!pip install --disable-pip-version-check -q transformers==3.5.1
+</code></pre>
+<pre><code>[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0mCollecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /opt/conda
+
+  added / updated specs:
+    - pytorch==1.6.0
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2023.05.30 |       h06a4308_0         120 KB
+    certifi-2022.12.7          |   py37h06a4308_0         150 KB
+    cudatoolkit-10.2.89        |       hfd86e86_1       365.1 MB
+    ninja-1.10.2               |       h06a4308_5           8 KB
+    ninja-base-1.10.2          |       hd09550d_5         109 KB
+    pytorch-1.6.0              |py3.7_cuda10.2.89_cudnn7.6.5_0       537.7 MB  pytorch
+    ------------------------------------------------------------
+                                           Total:       903.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  cudatoolkit        pkgs/main/linux-64::cudatoolkit-10.2.89-hfd86e86_1 None
+  ninja              pkgs/main/linux-64::ninja-1.10.2-h06a4308_5 None
+  ninja-base         pkgs/main/linux-64::ninja-base-1.10.2-hd09550d_5 None
+  pytorch            pytorch/linux-64::pytorch-1.6.0-py3.7_cuda10.2.89_cudnn7.6.5_0 None
+
+The following packages will be UPDATED:
+
+  ca-certificates    conda-forge::ca-certificates-2022.12.~ --&gt; pkgs/main::ca-certificates-2023.05.30-h06a4308_0 None
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  certifi            conda-forge/noarch::certifi-2022.12.7~ --&gt; pkgs/main/linux-64::certifi-2022.12.7-py37h06a4308_0 None
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Retrieving notices: ...working... done
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m
+</code></pre>
+<pre><code class="language-python">import boto3
+import sagemaker
+import botocore
+
+config = botocore.config.Config(user_agent_extra='dlai-pds/c2/w1')
+
+# low-level service client of the boto3 session
+sm = boto3.client(service_name='sagemaker', 
+                  config=config)
+
+featurestore_runtime = boto3.client(service_name='sagemaker-featurestore-runtime', 
+                                    config=config)
+
+sess = sagemaker.Session(sagemaker_client=sm,
+                         sagemaker_featurestore_runtime_client=featurestore_runtime)
+
+bucket = sess.default_bucket()
+role = sagemaker.get_execution_role()
+region = sess.boto_region_name
+</code></pre>
+<p><a name='c2w1-1.'></a></p>
+<h1 id="1-configure-the-sagemaker-feature-store">1. Configure the SageMaker Feature Store</h1>
+<p><a name='c2w1-1.1.'></a></p>
+<h3 id="11-configure-dataset">1.1. Configure dataset</h3>
+<p>The raw dataset is in the public S3 bucket. Let's start by specifying the S3 location of it:</p>
+<pre><code class="language-python">raw_input_data_s3_uri = 's3://dlai-practical-data-science/data/raw/'
+print(raw_input_data_s3_uri)
+</code></pre>
+<pre><code>s3://dlai-practical-data-science/data/raw/
+</code></pre>
+<p>List the files in the S3 bucket (in this case it will be just one file):</p>
+<pre><code class="language-python">!aws s3 ls $raw_input_data_s3_uri
+</code></pre>
+<pre><code>2021-04-30 02:21:06    8457214 womens_clothing_ecommerce_reviews.csv
+</code></pre>
+<p><a name='c2w1-1.2.'></a></p>
+<h3 id="12-configure-the-sagemaker-feature-store">1.2. Configure the SageMaker feature store</h3>
+<p>As the result of the transformation, in addition to generating files in S3 bucket, you will also save the transformed data in the <strong>Amazon SageMaker Feature Store</strong> to be used by others in your organization, for example. </p>
+<p>To configure a Feature Store you need to setup a <strong>Feature Group</strong>. This is the main resource containing all of the metadata related to the data stored in the Feature Store. A Feature Group should contain a list of <strong>Feature Definitions</strong>. A Feature Definition consists of a name and the data type. The Feature Group also contains an online store configuration and an offline store configuration controlling where the data is stored. Enabling the online store allows quick access to the latest value for a record via the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html">GetRecord API</a>. The offline store allows storage of the data in your S3 bucket. You will be using the offline store in this lab.</p>
+<p>Let's setup the Feature Group name and the Feature Store offline prefix in S3 bucket (you will use those later in the lab):</p>
+<pre><code class="language-python">import time
+timestamp = int(time.time())
+
+feature_group_name = 'reviews-feature-group-' + str(timestamp)
+feature_store_offline_prefix = 'reviews-feature-store-' + str(timestamp)
+
+print('Feature group name: {}'.format(feature_group_name))
+print('Feature store offline prefix in S3: {}'.format(feature_store_offline_prefix))
+</code></pre>
+<pre><code>Feature group name: reviews-feature-group-1686463816
+Feature store offline prefix in S3: reviews-feature-store-1686463816
+</code></pre>
+<p>Taking two features from the original raw dataset (<code>Review Text</code> and <code>Rating</code>), you will transform it preparing to be used for the model training and then to be saved in the Feature Store. Here you will define the related features to be stored as a list of <code>FeatureDefinition</code>.</p>
+<pre><code class="language-python">from sagemaker.feature_store.feature_definition import (
+    FeatureDefinition,
+    FeatureTypeEnum,
+)
+
+feature_definitions= [
+    # unique ID of the review
+    FeatureDefinition(feature_name='review_id', feature_type=FeatureTypeEnum.STRING), 
+    # ingestion timestamp
+    FeatureDefinition(feature_name='date', feature_type=FeatureTypeEnum.STRING),
+    # sentiment: -1 (negative), 0 (neutral) or 1 (positive). It will be found the Rating values (1, 2, 3, 4, 5)
+    FeatureDefinition(feature_name='sentiment', feature_type=FeatureTypeEnum.STRING), 
+    # label ID of the target class (sentiment)
+    FeatureDefinition(feature_name='label_id', feature_type=FeatureTypeEnum.STRING),
+    # reviews encoded with the BERT tokenizer
+    FeatureDefinition(feature_name='input_ids', feature_type=FeatureTypeEnum.STRING),
+    # original Review Text
+    FeatureDefinition(feature_name='review_body', feature_type=FeatureTypeEnum.STRING),
+    # train/validation/test label
+    FeatureDefinition(feature_name='split_type', feature_type=FeatureTypeEnum.STRING)
+]
+</code></pre>
+<p><a name='c2w1-ex-1'></a></p>
+<h3 id="exercise-1">Exercise 1</h3>
+<p>Create the feature group using the feature definitions defined above.</p>
+<p><strong>Instructions:</strong> Use the <code>FeatureGroup</code> function passing the defined above feature group name and the feature definitions.</p>
+<pre><code class="language-python">feature_group = FeatureGroup(
+    name=..., # Feature Group name
+    feature_definitions=..., # a list of Feature Definitions
+    sagemaker_session=sess # SageMaker session
+)
+</code></pre>
+<pre><code class="language-python">from sagemaker.feature_store.feature_group import FeatureGroup
+
+feature_group = FeatureGroup(
+    ### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+    name=feature_group_name, # Replace None
+    feature_definitions=feature_definitions, # Replace None
+    ### END SOLUTION - DO NOT delete this comment for grading purposes
+    sagemaker_session=sess
+)
+
+print(feature_group)
+</code></pre>
+<pre><code>FeatureGroup(name='reviews-feature-group-1686463816', sagemaker_session=&lt;sagemaker.session.Session object at 0x7f0b3d12bd50&gt;, feature_definitions=[FeatureDefinition(feature_name='review_id', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='date', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='sentiment', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='label_id', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='input_ids', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='review_body', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;), FeatureDefinition(feature_name='split_type', feature_type=&lt;FeatureTypeEnum.STRING: 'String'&gt;)])
+</code></pre>
+<p>You will use the defined Feature Group later in this lab, the actual creation of the Feature Group will take place in the processing job. Now let's move into the setup of the processing job to transform the dataset.</p>
+<p><a name='c2w1-2.'></a></p>
+<h1 id="2-transform-the-dataset">2. Transform the dataset</h1>
+<p>You will configure a SageMaker processing job to run a custom Python script to balance and transform the raw data into a format used by BERT model.</p>
+<p>Set the transformation parameters including the instance type, instance count, and train/validation/test split percentages. For the purposes of this lab, you will use a relatively small instance type. Please refer to <a href="https://aws.amazon.com/sagemaker/pricing/">this</a> link for additional instance types that may work for your use case outside of this lab.</p>
+<p>You can also choose whether you want to balance the dataset or not. In this case, you will balance the dataset to avoid class imbalance in the target variable, <code>sentiment</code>. </p>
+<p>Another important parameter of the model is the <code>max_seq_length</code>, which specifies the maximum length of the classified reviews for the RoBERTa model. If the sentence is shorter than the maximum length parameter, it will be padded. In another case, when the sentence is longer, it will be truncated from the right side.</p>
+<p>Since a smaller <code>max_seq_length</code> leads to faster training and lower resource utilization, you want to find the smallest power-of-2 that captures <code>100%</code> of our reviews.  For this dataset, the <code>100th</code> percentile is <code>115</code>.  However, it's best to stick with powers-of-2 when using BERT. So let's choose <code>128</code> as this is the smallest power-of-2 greater than <code>115</code>. You will see below how the shorter sentences will be padded to a maximum length.</p>
+<pre><code>mean        52.512374
+std         31.387048
+min          1.000000
+10%         10.000000
+20%         22.000000
+30%         32.000000
+40%         41.000000
+50%         51.000000
+60%         61.000000
+70%         73.000000
+80%         88.000000
+90%         97.000000
+100%       115.000000
+max        115.000000
+</code></pre>
+<p><a class="glightbox" href="images/distribution_num_words_per_review.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="images/distribution_num_words_per_review.png" /></a></p>
+<pre><code class="language-python">processing_instance_type='ml.c5.xlarge'
+processing_instance_count=1
+train_split_percentage=0.90
+validation_split_percentage=0.05
+test_split_percentage=0.05
+balance_dataset=True
+max_seq_length=128
+</code></pre>
+<p>To balance and transform our data, you will use a scikit-learn-based processing job. This is essentially a generic Python processing job with scikit-learn pre-installed. You can specify the version of scikit-learn you wish to use. Also pass the SageMaker execution role, processing instance type and instance count.</p>
+<pre><code class="language-python">from sagemaker.sklearn.processing import SKLearnProcessor
+
+processor = SKLearnProcessor(
+    framework_version='0.23-1',
+    role=role,
+    instance_type=processing_instance_type,
+    instance_count=processing_instance_count,
+    env={'AWS_DEFAULT_REGION': region},                             
+    max_runtime_in_seconds=7200
+)
+</code></pre>
+<p>The processing job will be running the Python code from the file <code>src/prepare_data.py</code>. In the following exercise you will review the contents of the file and familiarize yourself with main parts of it. </p>
+<p><a name='c2w1-ex-2'></a></p>
+<h3 id="exercise-2">Exercise 2</h3>
+<ol>
+<li>Open the file <a href="src/prepare_data.py">src/prepare_data.py</a>. Go through the comments to understand its content.</li>
+<li>Find and review the <code>convert_to_bert_input_ids()</code> function, which contains the RoBERTa <code>tokenizer</code> configuration.</li>
+<li>Complete method <code>encode_plus</code> of the RoBERTa <code>tokenizer</code>. Pass the <code>max_seq_length</code> as a value for the argument <code>max_length</code>. It defines a pad to a maximum length specified.</li>
+<li>Save the file <a href="src/prepare_data.py">src/prepare_data.py</a> (with the menu command File -&gt; Save Python File).</li>
+</ol>
+<h3 id="this-cell-will-take-approximately-1-2-minutes-to-run"><em>This cell will take approximately 1-2 minutes to run.</em></h3>
+<pre><code class="language-python">import sys, importlib
+sys.path.append('src/')
+
+# import the `prepare_data.py` module
+import prepare_data
+
+# reload the module if it has been previously loaded 
+if 'prepare_data' in sys.modules:
+    importlib.reload(prepare_data)
+
+input_ids = prepare_data.convert_to_bert_input_ids(&quot;this product is great!&quot;, max_seq_length)
+
+updated_correctly = False
+
+if len(input_ids) != max_seq_length:
+    print('#######################################################################################################')
+    print('Please check that the function \'convert_to_bert_input_ids\' in the file src/prepare_data.py is complete.')
+    print('#######################################################################################################')
+    raise Exception('Please check that the function \'convert_to_bert_input_ids\' in the file src/prepare_data.py is complete.')
+else:
+    print('##################')
+    print('Updated correctly!')
+    print('##################')
+
+    updated_correctly = True
+</code></pre>
+<pre><code>HBox(children=(FloatProgress(value=0.0, description='Downloading', max=898823.0, style=ProgressStyle(descripti…
+
+
+
+
+
+
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=456318.0, style=ProgressStyle(descripti…
+
+
+
+##################
+Updated correctly!
+##################
+</code></pre>
+<p>Review the results of tokenization for the given example (<em>\"this product is great!\"</em>):</p>
+<pre><code class="language-python">input_ids = prepare_data.convert_to_bert_input_ids(&quot;this product is great!&quot;, max_seq_length)
+
+print(input_ids)
+print('Length of the sequence: {}'.format(len(input_ids)))
+</code></pre>
+<pre><code>[0, 9226, 1152, 16, 372, 328, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+Length of the sequence: 128
+</code></pre>
+<p>Launch the processing job with the custom script passing defined above parameters.</p>
+<pre><code class="language-python">from sagemaker.processing import ProcessingInput, ProcessingOutput
+
+if (updated_correctly):
+
+    processor.run(code='src/prepare_data.py',
+              inputs=[
+                    ProcessingInput(source=raw_input_data_s3_uri,
+                                    destination='/opt/ml/processing/input/data/',
+                                    s3_data_distribution_type='ShardedByS3Key')
+              ],
+              outputs=[
+                    ProcessingOutput(output_name='sentiment-train',
+                                     source='/opt/ml/processing/output/sentiment/train',
+                                     s3_upload_mode='EndOfJob'),
+                    ProcessingOutput(output_name='sentiment-validation',
+                                     source='/opt/ml/processing/output/sentiment/validation',
+                                     s3_upload_mode='EndOfJob'),
+                    ProcessingOutput(output_name='sentiment-test',
+                                     source='/opt/ml/processing/output/sentiment/test',
+                                     s3_upload_mode='EndOfJob')
+              ],
+              arguments=['--train-split-percentage', str(train_split_percentage),
+                         '--validation-split-percentage', str(validation_split_percentage),
+                         '--test-split-percentage', str(test_split_percentage),
+                         '--balance-dataset', str(balance_dataset),
+                         '--max-seq-length', str(max_seq_length),                         
+                         '--feature-store-offline-prefix', str(feature_store_offline_prefix),
+                         '--feature-group-name', str(feature_group_name)                         
+              ],
+              logs=True,
+              wait=False)
+
+else:
+    print('#######################################')
+    print('Please update the code correctly above.')
+    print('#######################################')    
+</code></pre>
+<pre><code>Job Name:  sagemaker-scikit-learn-2023-06-11-06-19-29-466
+Inputs:  [{'InputName': 'input-1', 'AppManaged': False, 'S3Input': {'S3Uri': 's3://dlai-practical-data-science/data/raw/', 'LocalPath': '/opt/ml/processing/input/data/', 'S3DataType': 'S3Prefix', 'S3InputMode': 'File', 'S3DataDistributionType': 'ShardedByS3Key', 'S3CompressionType': 'None'}}, {'InputName': 'code', 'AppManaged': False, 'S3Input': {'S3Uri': 's3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/input/code/prepare_data.py', 'LocalPath': '/opt/ml/processing/input/code', 'S3DataType': 'S3Prefix', 'S3InputMode': 'File', 'S3DataDistributionType': 'FullyReplicated', 'S3CompressionType': 'None'}}]
+Outputs:  [{'OutputName': 'sentiment-train', 'AppManaged': False, 'S3Output': {'S3Uri': 's3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-train', 'LocalPath': '/opt/ml/processing/output/sentiment/train', 'S3UploadMode': 'EndOfJob'}}, {'OutputName': 'sentiment-validation', 'AppManaged': False, 'S3Output': {'S3Uri': 's3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-validation', 'LocalPath': '/opt/ml/processing/output/sentiment/validation', 'S3UploadMode': 'EndOfJob'}}, {'OutputName': 'sentiment-test', 'AppManaged': False, 'S3Output': {'S3Uri': 's3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-test', 'LocalPath': '/opt/ml/processing/output/sentiment/test', 'S3UploadMode': 'EndOfJob'}}]
+</code></pre>
+<p>You can see the information about the processing jobs using the <code>describe</code> function. The result is in dictionary format. Let's pull the processing job name:</p>
+<pre><code class="language-python">scikit_processing_job_name = processor.jobs[-1].describe()['ProcessingJobName']
+
+print('Processing job name: {}'.format(scikit_processing_job_name))
+</code></pre>
+<pre><code>Processing job name: sagemaker-scikit-learn-2023-06-11-06-19-29-466
+</code></pre>
+<p><a name='c2w1-ex-3'></a></p>
+<h3 id="exercise-3">Exercise 3</h3>
+<p>Pull the processing job status from the processing job description.</p>
+<p><strong>Instructions</strong>: Print the keys of the processing job description dictionary, choose the one related to the status of the processing job and print the value of it.</p>
+<pre><code class="language-python">print(processor.jobs[-1].describe().keys())
+</code></pre>
+<pre><code>dict_keys(['ProcessingInputs', 'ProcessingOutputConfig', 'ProcessingJobName', 'ProcessingResources', 'StoppingCondition', 'AppSpecification', 'Environment', 'RoleArn', 'ProcessingJobArn', 'ProcessingJobStatus', 'LastModifiedTime', 'CreationTime', 'ResponseMetadata'])
+</code></pre>
+<pre><code class="language-python">### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+scikit_processing_job_status = processor.jobs[-1].describe()['ProcessingJobStatus'] # Replace None
+### END SOLUTION - DO NOT delete this comment for grading purposes
+print('Processing job status: {}'.format(scikit_processing_job_status))
+</code></pre>
+<pre><code>Processing job status: InProgress
+</code></pre>
+<p>Review the created processing job in the AWS console.</p>
+<p><strong>Instructions</strong>: 
+- open the link
+- notice that you are in the section <code>Amazon SageMaker</code> -&gt; <code>Processing jobs</code>
+- check the name of the processing job, its status and other available information</p>
+<pre><code class="language-python">from IPython.core.display import display, HTML
+
+display(HTML('&lt;b&gt;Review &lt;a target=&quot;blank&quot; href=&quot;https://console.aws.amazon.com/sagemaker/home?region={}#/processing-jobs/{}&quot;&gt;processing job&lt;/a&gt;&lt;/b&gt;'.format(region, scikit_processing_job_name)))
+</code></pre>
+<p><b>Review <a target="blank" href="https://console.aws.amazon.com/sagemaker/home?region=us-east-1#/processing-jobs/sagemaker-scikit-learn-2023-06-11-06-19-29-466">processing job</a></b></p>
+<p>Wait for about 5 minutes to review the CloudWatch Logs. You may open the file <a href="src/prepare_data.py">src/prepare_data.py</a> again and examine the outputs of the code in the CloudWatch logs.</p>
+<pre><code class="language-python">from IPython.core.display import display, HTML
+
+display(HTML('&lt;b&gt;Review &lt;a target=&quot;blank&quot; href=&quot;https://console.aws.amazon.com/cloudwatch/home?region={}#logStream:group=/aws/sagemaker/ProcessingJobs;prefix={};streamFilter=typeLogStreamPrefix&quot;&gt;CloudWatch logs&lt;/a&gt; after about 5 minutes&lt;/b&gt;'.format(region, scikit_processing_job_name)))
+</code></pre>
+<p><b>Review <a target="blank" href="https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#logStream:group=/aws/sagemaker/ProcessingJobs;prefix=sagemaker-scikit-learn-2023-06-11-06-19-29-466;streamFilter=typeLogStreamPrefix">CloudWatch logs</a> after about 5 minutes</b></p>
+<p>After the completion of the processing job you can also review the output in the S3 bucket.</p>
+<pre><code class="language-python">from IPython.core.display import display, HTML
+
+display(HTML('&lt;b&gt;Review &lt;a target=&quot;blank&quot; href=&quot;https://s3.console.aws.amazon.com/s3/buckets/{}/{}/?region={}&amp;tab=overview&quot;&gt;S3 output data&lt;/a&gt; after the processing job has completed&lt;/b&gt;'.format(bucket, scikit_processing_job_name, region)))
+
+</code></pre>
+<p><b>Review <a target="blank" href="https://s3.console.aws.amazon.com/s3/buckets/sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/?region=us-east-1&tab=overview">S3 output data</a> after the processing job has completed</b></p>
+<p>Wait for the processing job to complete.</p>
+<h3 id="this-cell-will-take-approximately-15-minutes-to-run"><em>This cell will take approximately 15 minutes to run.</em></h3>
+<pre><code class="language-python">%%time
+
+running_processor = sagemaker.processing.ProcessingJob.from_processing_name(
+    processing_job_name=scikit_processing_job_name,
+    sagemaker_session=sess
+)
+
+running_processor.wait(logs=False)
+</code></pre>
+<pre><code>................................................................................!CPU times: user 367 ms, sys: 20.1 ms, total: 387 ms
+Wall time: 6min 45s
+</code></pre>
+<p><em>Please wait until ^^ Processing Job ^^ completes above</em></p>
+<p>Inspect the transformed and balanced data in the S3 bucket.</p>
+<pre><code class="language-python">processing_job_description = running_processor.describe()
+
+output_config = processing_job_description['ProcessingOutputConfig']
+for output in output_config['Outputs']:
+    if output['OutputName'] == 'sentiment-train':
+        processed_train_data_s3_uri = output['S3Output']['S3Uri']
+    if output['OutputName'] == 'sentiment-validation':
+        processed_validation_data_s3_uri = output['S3Output']['S3Uri']
+    if output['OutputName'] == 'sentiment-test':
+        processed_test_data_s3_uri = output['S3Output']['S3Uri']
+
+print(processed_train_data_s3_uri)
+print(processed_validation_data_s3_uri)
+print(processed_test_data_s3_uri)
+</code></pre>
+<pre><code>s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-train
+s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-validation
+s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-test
+</code></pre>
+<pre><code class="language-python">!aws s3 ls $processed_train_data_s3_uri/
+</code></pre>
+<pre><code>2023-06-11 06:32:30    4898781 part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<pre><code class="language-python">!aws s3 ls $processed_validation_data_s3_uri/
+</code></pre>
+<pre><code>2023-06-11 06:32:30     270676 part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<pre><code class="language-python">!aws s3 ls $processed_test_data_s3_uri/
+</code></pre>
+<pre><code>2023-06-11 06:32:31     273383 part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<p>Copy the data into the folder <code>balanced</code>.</p>
+<pre><code class="language-python">!aws s3 cp $processed_train_data_s3_uri/part-algo-1-womens_clothing_ecommerce_reviews.tsv ./balanced/sentiment-train/
+!aws s3 cp $processed_validation_data_s3_uri/part-algo-1-womens_clothing_ecommerce_reviews.tsv ./balanced/sentiment-validation/
+!aws s3 cp $processed_test_data_s3_uri/part-algo-1-womens_clothing_ecommerce_reviews.tsv ./balanced/sentiment-test/
+</code></pre>
+<pre><code>download: s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-train/part-algo-1-womens_clothing_ecommerce_reviews.tsv to balanced/sentiment-train/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+download: s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-validation/part-algo-1-womens_clothing_ecommerce_reviews.tsv to balanced/sentiment-validation/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+download: s3://sagemaker-us-east-1-047418094836/sagemaker-scikit-learn-2023-06-11-06-19-29-466/output/sentiment-test/part-algo-1-womens_clothing_ecommerce_reviews.tsv to balanced/sentiment-test/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<p>Review the training, validation and test data outputs:</p>
+<pre><code class="language-python">!head -n 5 ./balanced/sentiment-train/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<pre><code>review_id   sentiment   label_id    input_ids   review_body date
+12096   1   2   [0, 45065, 16, 372, 1437, 10698, 182, 157, 23, 3844, 1437, 939, 524, 195, 108, 306, 16157, 17243, 2162, 1836, 290, 642, 8, 24, 18, 205, 734, 939, 74, 2703, 3568, 8872, 25, 24, 11541, 8, 6476, 15, 5, 1929, 4, 51, 32, 55, 1136, 73, 36741, 73, 31421, 9304, 25, 1468, 1341, 7992, 4, 1374, 1437, 939, 524, 1372, 19, 106, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]   Quality is great  fits very well at waste  i am 5'4 135lb bought size 8p and it's good... i would require wear heels as it reaches and sits on the floor. they are more fall/spring/winter pants as material quite thick. overall  i am happy with them 2023-06-11T06:26:11Z
+10118   -1  0   [0, 713, 3588, 34, 1256, 8089, 4, 5, 299, 2564, 157, 53, 5, 2576, 1415, 101, 41, 7237, 159, 16676, 4, 24, 34, 615, 1468, 7, 146, 132, 31296, 8, 5, 380, 12189, 15, 5, 2380, 146, 5, 16576, 4757, 66, 29445, 4, 5, 1345, 9, 1421, 16, 31, 526, 1437, 45, 5, 760, 4, 182, 29747, 24203, 15, 162, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  This dress has pretty colors. the top fit well but the bottom looked like an upside down umbrella. it has enough material to make 2 skirts and the big pockets on the sides make the skirt stick out sideways. the photo of model is from side  not the front. very unflattering on me. 2023-06-11T06:26:11Z
+7852    -1  0   [0, 347, 4467, 11, 6680, 1437, 939, 657, 5, 4520, 8089, 1437, 5, 3016, 909, 19008, 579, 1671, 8, 5, 1510, 18, 16464, 1437, 959, 1437, 5, 10199, 16, 6162, 1437, 8, 5, 2373, 233, 11, 127, 1217, 16, 14, 5, 39336, 14, 422, 552, 5, 760, 1312, 9, 5, 6399, 109, 45, 12432, 5, 6184, 4, 2085, 42, 21, 18797, 1437, 53, 19, 5, 6399, 939, 829, 1437, 24, 1415, 11385, 4, 939, 1051, 24, 124, 4, 939, 3120, 11, 5, 2170, 14, 5, 909, 3405, 32, 19055, 2325, 81, 5, 1312, 760, 27595, 1437, 98, 24, 16, 10, 828, 34575, 9404, 4, 939, 1979, 75, 907, 42, 299, 23, 143, 425, 716, 15, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  Cute in theory  i love the bright colors  the tied black collar sash and the 70's vibe  however  the fabric is cheap  and the worst part in my view is that the seams that run along the front center of the shirt do not align the pattern. maybe this was intentional  but with the shirt i received  it looked horrible. i sent it back. i notice in the picture that the black ties are strategically placed over the center front seam  so it is a bit deceiving. i wouldn't buy this top at any price based on    2023-06-11T06:26:11Z
+8068    1   2   [0, 19065, 8089, 1437, 2496, 8, 2564, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]    Great colors  style and fit 2023-06-11T06:26:11Z
+</code></pre>
+<pre><code class="language-python">!head -n 5 ./balanced/sentiment-validation/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<pre><code>review_id   sentiment   label_id    input_ids   review_body date
+12126   1   2   [0, 713, 16, 804, 5451, 98, 939, 2740, 258, 10070, 3023, 29, 8, 579, 4, 24, 1237, 1256, 739, 98, 939, 1682, 1836, 3023, 29, 4, 5, 1468, 64, 28, 13596, 4, 53, 939, 101, 5, 2157, 9, 24, 8, 182, 3473, 7, 110, 3024, 4, 939, 524, 98, 1372, 2806, 98, 171, 33391, 11263, 939, 213, 16506, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  This is online exclusive so i ordered both sizes xs and s. it runs pretty large so i kept size xs. the material can be stretched. but i like the feeling of it and very comfortable to your skin. i am so happy receiving so many compliments wherever i go!!!  2023-06-11T06:26:11Z
+2430    0   1   [0, 100, 2162, 155, 9, 209, 13657, 11, 430, 8089, 1437, 5, 2440, 65, 56, 65, 24150, 28840, 10941, 4, 1051, 24, 124, 4, 122, 540, 87, 158, 360, 423, 51, 32, 15, 1392, 4, 5, 2496, 16, 30213, 8, 120, 171, 14156, 2963, 15, 5, 80, 939, 33, 4, 856, 28831, 939, 437, 10, 2491, 417, 8325, 29882, 8, 5679, 2564, 372, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  I bought 3 of these tops in different colors  the blue one had one sleeve noticeably shorter. sent it back. now less than 10 days later they are on sale. the style is darling and get many complements on the two i have. fyi i'm a 36d 130lbs and med fit great   2023-06-11T06:26:11Z
+4395    -1  0   [0, 100, 794, 42, 15, 10, 313, 858, 18017, 11, 5, 1400, 8, 98, 770, 24, 7, 173, 53, 21, 95, 350, 24901, 8, 35156, 4, 182, 205, 1318, 8, 1468, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]    I saw this on a mannequin in the store and so wanted it to work but was just too oversized and bulky. very good quality and material.   2023-06-11T06:26:11Z
+2386    1   2   [0, 597, 20554, 833, 53, 45, 350, 856, 28102, 13454, 16, 10, 2579, 37919, 12, 3341, 1468, 4, 939, 300, 5, 1104, 65, 61, 40, 213, 19, 10, 319, 9, 127, 31296, 1437, 9304, 8, 13344, 4, 7328, 97, 34910, 1437, 939, 399, 75, 465, 24, 350, 765, 13, 162, 23, 70, 1437, 53, 939, 524, 239, 12, 2739, 15346, 4, 9881, 53, 19, 30109, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]   Feminine but not too fussy tee is a nice linen-like material. i got the white one which will go with a lot of my skirts  pants and shorts. unlike other reviewers  i didn't find it too short for me at all  but i am high-waisted. casual but with extras. 2023-06-11T06:26:11Z
+</code></pre>
+<pre><code class="language-python">!head -n 5 ./balanced/sentiment-test/part-algo-1-womens_clothing_ecommerce_reviews.tsv
+</code></pre>
+<pre><code>review_id   sentiment   label_id    input_ids   review_body date
+14693   -1  0   [0, 100, 269, 770, 7, 657, 42, 6399, 328, 5, 8089, 32, 12058, 1437, 182, 11577, 8, 95, 25, 2343, 4, 5, 2564, 21, 70, 1593, 15, 162, 4, 939, 2740, 5, 4716, 1459, 37863, 29, 8, 24, 21, 202, 350, 2233, 219, 4, 8, 1437, 24, 1682, 9255, 98, 5, 760, 19008, 9, 5, 6399, 74, 3068, 62, 88, 127, 5397, 4, 24, 1415, 101, 10, 14072, 15, 162, 4, 13, 5135, 12, 939, 524, 195, 108, 176, 113, 1437, 12730, 29882, 734, 5632, 10, 650, 5120, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  "I really wanted to love this shirt! the colors are gorgeous  very vibrant and just as shown. the fit was all wrong on me. i ordered the petite xxs and it was still too boxy. and  it kept shifting so the front collar of the shirt would ride up into my neck. it looked like a sack on me. for reference- i am 5'2""  112lbs...with a small frame." 2023-06-11T06:26:11Z
+1209    1   2   [0, 100, 2638, 5, 3195, 8, 5, 2496, 9, 5, 21764, 4, 1437, 24, 21, 10, 828, 350, 765, 15, 162, 8, 939, 802, 24, 156, 162, 356, 2233, 219, 98, 939, 399, 75, 253, 62, 2396, 24, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] I loved the color and the style of the sleeves.  it was a bit too short on me and i thought it made me look boxy so i didn't end up keeping it  2023-06-11T06:26:11Z
+17209   -1  0   [0, 133, 2564, 9, 5, 299, 16, 1528, 7, 1836, 1437, 53, 939, 269, 218, 75, 101, 5, 326, 1180, 2379, 8470, 1506, 41262, 12, 3341, 22861, 28517, 223, 5, 1104, 22990, 4, 5, 1104, 22990, 16, 4520, 1104, 8, 1302, 182, 28685, 1437, 53, 24, 817, 5, 22861, 28517, 12213, 356, 182, 11216, 8, 182, 28840, 326, 1180, 2379, 4, 24, 16, 6587, 11153, 561, 4, 939, 67, 399, 75, 101, 5, 619, 9, 5, 8470, 1506, 41262, 12, 3341, 10199, 136, 127, 3024, 4, 190, 600, 42, 16, 10, 205, 1318, 2125, 19, 10, 319, 9, 2679, 4617, 1437, 939, 437, 3668, 3981, 24, 124, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]   The fit of the top is true to size  but i really don't like the taupe terrycloth-like sweatshirt under the white lace. the white lace is bright white and seems very sturdy  but it makes the sweatshirt underneath look very dirty and very noticeably taupe. it is terrible paired together. i also didn't like the feel of the terrycloth-like fabric against my skin. even though this is a good quality piece with a lot of interesting detail  i'm absolutely sending it back.    2023-06-11T06:26:11Z
+14582   -1  0   [0, 100, 269, 770, 7, 657, 42, 1437, 53, 24, 21, 95, 350, 13103, 18140, 1827, 7, 28, 34203, 4, 939, 524, 3700, 10, 1836, 158, 50, 316, 11, 14442, 8, 13855, 27734, 1437, 8, 5, 4761, 21, 1087, 6932, 198, 162, 4, 67, 5, 33827, 13977, 478, 162, 614, 8, 15713, 3804, 11, 41, 29747, 24203, 169, 4, 24, 56, 7, 213, 124, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]    I really wanted to love this  but it was just too voluminous to be flattering. i am typically a size 10 or 12 in dresses and jumpsuits  and the medium was billowing around me. also the elastic waist hit me low and bunched in an unflattering way. it had to go back.    2023-06-11T06:26:11Z
+</code></pre>
+<p><a name='c2w1-3.'></a></p>
+<h1 id="3-query-the-feature-store">3. Query the Feature Store</h1>
+<p>In addition to transforming the data and saving in S3 bucket, the processing job populates the feature store with the transformed and balanced data.  Let's query this data using Amazon Athena.</p>
+<p><a name='c2w1-3.1.'></a></p>
+<h3 id="31-export-training-validation-and-test-datasets-from-the-feature-store">3.1. Export training, validation, and test datasets from the Feature Store</h3>
+<p>Here you will do the export only for the training dataset, as an example. </p>
+<p>Use <code>athena_query()</code> function to create an Athena query for the defined above Feature Group. Then you can pull the table name of the Amazon Glue Data Catalog table which is auto-generated by Feature Store.</p>
+<pre><code class="language-python">feature_store_query = feature_group.athena_query()
+
+feature_store_table = feature_store_query.table_name
+
+query_string = &quot;&quot;&quot;
+    SELECT date,
+        review_id,
+        sentiment, 
+        label_id,
+        input_ids,
+        review_body
+    FROM &quot;{}&quot; 
+    WHERE split_type='train' 
+    LIMIT 5
+&quot;&quot;&quot;.format(feature_store_table)
+
+print('Glue Catalog table name: {}'.format(feature_store_table))
+print('Running query: {}'.format(query_string))
+</code></pre>
+<pre><code>Glue Catalog table name: reviews_feature_group_1686463816_1686464741
+Running query: 
+    SELECT date,
+        review_id,
+        sentiment, 
+        label_id,
+        input_ids,
+        review_body
+    FROM "reviews_feature_group_1686463816_1686464741" 
+    WHERE split_type='train' 
+    LIMIT 5
+</code></pre>
+<p>Configure the S3 location for the query results.  This allows us to re-use the query results for future queries if the data has not changed.  We can even share this S3 location between team members to improve query performance for common queries on data that does not change often.</p>
+<pre><code class="language-python">output_s3_uri = 's3://{}/query_results/{}/'.format(bucket, feature_store_offline_prefix)
+print(output_s3_uri)
+</code></pre>
+<pre><code>s3://sagemaker-us-east-1-047418094836/query_results/reviews-feature-store-1686463816/
+</code></pre>
+<p><a name='c2w1-ex-4'></a></p>
+<h3 id="exercise-4">Exercise 4</h3>
+<p>Query the feature store.</p>
+<p><strong>Instructions</strong>: Use <code>feature_store_query.run</code> function passing the constructed above query string and the location of the output S3 bucket.</p>
+<pre><code class="language-python">feature_store_query.run(
+    query_string=..., # query string
+    output_location=... # location of the output S3 bucket
+)
+</code></pre>
+<pre><code class="language-python">feature_store_query.run(
+    ### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+    query_string=query_string, # Replace None
+    output_location=output_s3_uri # Replace None
+    ### END SOLUTION - DO NOT delete this comment for grading purposes
+)
+
+feature_store_query.wait()
+</code></pre>
+<pre><code class="language-python">import pandas as pd
+pd.set_option(&quot;max_colwidth&quot;, 100)
+
+df_feature_store = feature_store_query.as_dataframe()
+df_feature_store
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>review_id</th>
+      <th>sentiment</th>
+      <th>label_id</th>
+      <th>input_ids</th>
+      <th>review_body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-06-11T06:26:11Z</td>
+      <td>18569</td>
+      <td>1</td>
+      <td>2</td>
+      <td>[0, 16587, 1437, 657, 42, 299, 4, 10199, 16, 2579, 8, 3793, 1437, 1326, 372, 19, 2084, 6149, 103...</td>
+      <td>Love  love this top. fabric is nice and soft  looks great with leggings. love the way it falls i...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-06-11T06:26:11Z</td>
+      <td>11103</td>
+      <td>0</td>
+      <td>1</td>
+      <td>[0, 713, 16, 10, 7992, 23204, 4, 24, 16, 1256, 1437, 53, 34, 10, 765, 5933, 4, 2, 1, 1, 1, 1, 1,...</td>
+      <td>This is a thick sweater. it is pretty  but has a short length.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-06-11T06:26:11Z</td>
+      <td>1038</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>[0, 20328, 282, 75, 173, 15, 42, 5350, 11454, 22101, 4, 1437, 39328, 62, 74, 33, 1147, 19, 5, 61...</td>
+      <td>Didn't work on this curvy gal.  sizing up would have helped with the button gaps  but the flowy ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-06-11T06:26:11Z</td>
+      <td>7946</td>
+      <td>0</td>
+      <td>1</td>
+      <td>[0, 28965, 1437, 10, 269, 2579, 299, 14, 16, 3793, 8, 3473, 4, 5, 3124, 5933, 2323, 15481, 15, 5...</td>
+      <td>Overall  a really nice top that is soft and comfortable. the arm length hits nicely on the forea...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-06-11T06:26:11Z</td>
+      <td>3267</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>[0, 100, 269, 6640, 42, 6399, 5, 65, 86, 939, 300, 7, 3568, 24, 734, 4297, 77, 939, 15158, 24, 1...</td>
+      <td>I really liked this shirt the one time i got to wear it...but when i washed it  according to the...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Review the Feature Store in SageMaker Studio</p>
+<p><a class="glightbox" href="images/sm_studio_extensions_featurestore.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="images/sm_studio_extensions_featurestore.png" /></a></p>
+<p><a name='c2w1-3.2.'></a></p>
+<h3 id="32-export-tsv-from-feature-store">3.2. Export TSV from Feature Store</h3>
+<p>Save the output as a TSV file:</p>
+<pre><code class="language-python">df_feature_store.to_csv('./feature_store_export.tsv',
+                        sep='\t',
+                        index=False,
+                        header=True)
+</code></pre>
+<pre><code class="language-python">!head -n 5 ./feature_store_export.tsv
+</code></pre>
+<pre><code>date    review_id   sentiment   label_id    input_ids   review_body
+2023-06-11T06:26:11Z    18569   1   2   [0, 16587, 1437, 657, 42, 299, 4, 10199, 16, 2579, 8, 3793, 1437, 1326, 372, 19, 2084, 6149, 1033, 4, 657, 5, 169, 24, 5712, 11, 5, 760, 41, 251, 615, 11, 5, 124, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]    Love  love this top. fabric is nice and soft  looks great with leggings. love the way it falls in the front an long enough in the back.
+2023-06-11T06:26:11Z    11103   0   1   [0, 713, 16, 10, 7992, 23204, 4, 24, 16, 1256, 1437, 53, 34, 10, 765, 5933, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] This is a thick sweater. it is pretty  but has a short length.
+2023-06-11T06:26:11Z    1038    -1  0   [0, 20328, 282, 75, 173, 15, 42, 5350, 11454, 22101, 4, 1437, 39328, 62, 74, 33, 1147, 19, 5, 6148, 10778, 1437, 53, 5, 3041, 219, 3989, 9, 5, 3089, 11556, 74, 33, 1415, 350, 21592, 15, 10, 2514, 1836, 4, 1437, 538, 1323, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]   Didn't work on this curvy gal.  sizing up would have helped with the button gaps  but the flowy shape of the blouse would have looked too maternity on a larger size.  major pass.
+2023-06-11T06:26:11Z    7946    0   1   [0, 28965, 1437, 10, 269, 2579, 299, 14, 16, 3793, 8, 3473, 4, 5, 3124, 5933, 2323, 15481, 15, 5, 30357, 8, 5, 29815, 4617, 23, 299, 16, 157, 12, 3865, 28354, 4, 399, 75, 489, 42, 187, 5, 299, 156, 162, 356, 1341, 380, 11, 127, 11044, 1437, 7, 5, 477, 9, 45, 145, 34203, 4, 299, 16, 67, 10, 828, 2233, 219, 1437, 98, 939, 1017, 1095, 409, 114, 47, 32, 4716, 1459, 1437, 19, 10, 2514, 11044, 3867, 47, 32, 8578, 19, 14, 9723, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] Overall  a really nice top that is soft and comfortable. the arm length hits nicely on the forearm and the decorative detail at top is well-constructed. didn't keep this since the top made me look quite big in my bust  to the point of not being flattering. top is also a bit boxy  so i'd stay away if you are petite  with a larger bust unless you are okay with that emphasis.
+</code></pre>
+<p>Upload TSV to the S3 bucket:</p>
+<pre><code class="language-python">!aws s3 cp ./feature_store_export.tsv s3://$bucket/feature_store/feature_store_export.tsv
+</code></pre>
+<pre><code>upload: ./feature_store_export.tsv to s3://sagemaker-us-east-1-047418094836/feature_store/feature_store_export.tsv
+</code></pre>
+<p>Check the file in the S3 bucket:</p>
+<pre><code class="language-python">!aws s3 ls --recursive s3://$bucket/feature_store/feature_store_export.tsv
+</code></pre>
+<pre><code>2023-06-11 06:37:31       3622 feature_store/feature_store_export.tsv
+</code></pre>
+<p><a name='c2w1-3.3.'></a></p>
+<h3 id="33-check-that-the-dataset-in-the-feature-store-is-balanced-by-sentiment">3.3. Check that the dataset in the Feature Store is balanced by sentiment</h3>
+<p>Now you can setup an Athena query to check that the stored dataset is balanced by the target class <code>sentiment</code>.</p>
+<p><a name='c2w1-ex-5'></a></p>
+<h3 id="exercise-5">Exercise 5</h3>
+<p>Write an SQL query to count the total number of the reviews per <code>sentiment</code> stored in the Feature Group.</p>
+<p><strong>Instructions</strong>: Pass the SQL statement of the form </p>
+<pre><code class="language-sql">SELECT category_column, COUNT(*) AS new_column_name
+FROM table_name
+GROUP BY category_column
+</code></pre>
+<p>into the variable <code>query_string_count_by_sentiment</code>. Here you would need to use the column <code>sentiment</code> and give a name <code>count_reviews</code> to the new column with the counts.</p>
+<pre><code class="language-python">feature_store_query_2 = feature_group.athena_query()
+
+# Replace all None
+### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+query_string_count_by_sentiment = &quot;&quot;&quot;
+SELECT sentiment, COUNT(*) AS count_reviews
+FROM &quot;{}&quot;
+GROUP BY sentiment
+&quot;&quot;&quot;.format(feature_store_table)
+### END SOLUTION - DO NOT delete this comment for grading purposes
+</code></pre>
+<p><a name='c2w1-ex-6'></a></p>
+<h3 id="exercise-6">Exercise 6</h3>
+<p>Query the feature store.</p>
+<p><strong>Instructions</strong>: Use <code>run</code> function of the Feature Store query, passing the new query string <code>query_string_count_by_sentiment</code>. The output S3 bucket will remain unchanged. You can follow the example above.</p>
+<pre><code class="language-python">feature_store_query_2.run(
+    ### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+    query_string=query_string_count_by_sentiment, # Replace None
+    output_location=output_s3_uri # Replace None
+    ### END SOLUTION - DO NOT delete this comment for grading purposes
+)
+
+feature_store_query_2.wait()
+
+df_count_by_sentiment = feature_store_query_2.as_dataframe()
+df_count_by_sentiment
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentiment</th>
+      <th>count_reviews</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1</td>
+      <td>2051</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>2051</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2051</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><a name='c2w1-ex-7'></a></p>
+<h3 id="exercise-7">Exercise 7</h3>
+<p>Visualize the result of the query in the bar plot, showing the count of the reviews by sentiment value.</p>
+<p><strong>Instructions</strong>: Pass the resulting data frame <code>df_count_by_sentiment</code> into the <code>barplot</code> function of the <code>seaborn</code> library.</p>
+<pre><code class="language-python">sns.barplot(
+    data=..., 
+    x='...', 
+    y='...',
+    color=&quot;blue&quot;
+)
+</code></pre>
+<pre><code class="language-python">%matplotlib inline
+import seaborn as sns
+
+sns.barplot(
+    ### BEGIN SOLUTION - DO NOT delete this comment for grading purposes
+    data=df_count_by_sentiment, # Replace None
+    x='sentiment', # Replace None
+    y='count_reviews', # Replace None
+    ### END SOLUTION - DO NOT delete this comment for grading purposes
+    color=&quot;blue&quot;
+)
+</code></pre>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f0ad1ecddd0&gt;
+</code></pre>
+<p><a class="glightbox" href="output_75_1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="output_75_1.png" /></a></p>
+<p>Upload the notebook and <code>prepare_data.py</code> file into S3 bucket for grading purposes.</p>
+<p><strong>Note</strong>: you may need to save the file before the upload.</p>
+<pre><code class="language-python">!aws s3 cp ./C2_W1_Assignment.ipynb s3://$bucket/C2_W1_Assignment_Learner.ipynb
+!aws s3 cp ./src/prepare_data.py s3://$bucket/src/C2_W1_prepare_data_Learner.py
+</code></pre>
+<p>Please go to the main lab window and click on <code>Submit</code> button (see the <code>Finish the lab</code> section of the instructions).</p>
+<pre><code class="language-python">
+</code></pre>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 24, 2024</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 24, 2024</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../sagemaker_blazing_text_built_in_algos/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Train a text classifier using Amazon SageMaker BlazingText built-in algorithm" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Train a text classifier using Amazon SageMaker BlazingText built-in algorithm
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../classifier_bert_amazon_sagemaker/" class="md-footer__link md-footer__link--next" aria-label="Next: Train a review classifier with BERT and Amazon SageMaker" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Train a review classifier with BERT and Amazon SageMaker
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023  Tajudeen Abdulazeez
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/tajudeenolarewajuabdulazeez/" target="_blank" rel="noopener" title="linkedin" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/tabdulazeez" target="_blank" rel="noopener" title="github" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand"], "search": "../../assets/javascripts/workers/search.780af0f4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f11ae8b1.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
