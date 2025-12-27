@@ -52,7 +52,7 @@ export function Footer() {
               <div className="col-span-2 md:col-span-1">
                  <h3 className="font-semibold text-foreground">Location</h3>
                  <p className="mt-4 text-muted-foreground">
-                    123 Innovation Drive <br />
+                    1968 S. Coast Hwy #1571 <br />
                     Laguna Beach, CA 92651 <br />
                     United States
                  </p>

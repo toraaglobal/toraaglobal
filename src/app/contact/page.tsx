@@ -32,7 +32,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold">Our Office</h3>
                   <p className="text-muted-foreground">
-                    123 Innovation Drive<br />
+                    1968 S. Coast Hwy #1571<br />
                     Laguna Beach, CA 92651<br />
                     United States
                   </p>
@@ -42,8 +42,8 @@ export default function ContactPage() {
                 <Mail className="h-6 w-6 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">Email Us</h3>
-                  <a href="mailto:contact@toraaglobal.com" className="text-muted-foreground hover:text-primary">
-                    contact@toraaglobal.com
+                  <a href="mailto:info@toraaglobal.com" className="text-muted-foreground hover:text-primary">
+                    info@toraaglobal.com
                   </a>
                 </div>
               </div>
@@ -51,8 +51,8 @@ export default function ContactPage() {
                 <Phone className="h-6 w-6 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">Call Us</h3>
-                  <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary">
-                    +1 (555) 123-4567
+                  <a href="tel:+19254789859" className="text-muted-foreground hover:text-primary">
+                    +1 (925) 478-9859
                   </a>
                 </div>
               </div>
