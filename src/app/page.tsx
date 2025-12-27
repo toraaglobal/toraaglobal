@@ -98,6 +98,7 @@ function ServicesSection() {
 }
 
 function SolutionsSection() {
+  const homePageSolutions = solutions.slice(0, 4);
   return (
     <section id="solutions" className="py-20 sm:py-32 bg-card/50">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -112,7 +113,7 @@ function SolutionsSection() {
           </p>
         </div>
         <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-8 md:grid-cols-2">
-          {solutions.map((solution, index) => (
+          {homePageSolutions.map((solution, index) => (
             <Card
               key={solution.title}
               className={cn("group relative flex flex-col p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1",
