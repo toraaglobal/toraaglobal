@@ -45,7 +45,7 @@ export function Footer() {
                     <a href="#" className="text-muted-foreground hover:text-primary">Twitter</a>
                   </li>
                   <li>
-                    <a href="#" className="text-muted-foreground hover:text-primary">GitHub</a>
+                    <a href="https://github.com/toraaglobal" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">GitHub</a>
                   </li>
                 </ul>
               </div>
@@ -72,7 +72,7 @@ export function Footer() {
                 <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
             </Button>
              <Button variant="ghost" size="icon" asChild>
-                <a href="#" aria-label="GitHub"><Github className="h-5 w-5" /></a>
+                <a href="https://github.com/toraaglobal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
             </Button>
           </div>
         </div>
