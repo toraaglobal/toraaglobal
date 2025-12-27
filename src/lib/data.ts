@@ -8,6 +8,7 @@ import {
   FileCode,
   Banknote,
   BrainCog,
+  MessageCircleQuestion,
 } from 'lucide-react';
 import { PlaceHolderImages } from './placeholder-images';
 
@@ -53,6 +54,13 @@ export interface Solution {
 }
 
 export const solutions: Solution[] = [
+  {
+    icon: MessageCircleQuestion,
+    title: 'Data & Warehouse Q&A',
+    problem: 'Getting Quick, Expert Answers',
+    description: 'Ask any question about data engineering or data warehousing and get an instant, expert response from our AI specialist to demonstrate our expertise.',
+    href: '/solutions#data-warehouse-qa',
+  },
   {
     icon: FileCode,
     title: 'Data-Flow Delta',

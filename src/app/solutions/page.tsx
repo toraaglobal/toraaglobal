@@ -4,6 +4,7 @@ import { DataFlowDeltaForm } from '@/components/solutions/data-flow-delta-form';
 import { ReguAssistForm } from '@/components/solutions/regu-assist-form';
 import { CreditWiseForm } from '@/components/solutions/credit-wise-form';
 import { IntelAdvisorForm } from '@/components/solutions/intel-advisor-form';
+import { DataWarehouseQaForm } from '@/components/solutions/data-warehouse-qa-form';
 
 export const metadata = {
   title: 'Innovation Lab | ToraaGlobal Solutions',
@@ -11,6 +12,7 @@ export const metadata = {
 };
 
 const solutionComponents: Record<string, React.ReactNode> = {
+  'Data & Warehouse Q&A': <DataWarehouseQaForm />,
   'Data-Flow Delta': <DataFlowDeltaForm />,
   'Regu-Assist': <ReguAssistForm />,
   'Credit-Wise': <CreditWiseForm />,
@@ -32,7 +34,7 @@ export default function SolutionsPage() {
 
       <div className="mt-16">
         <Tabs defaultValue={solutions[0].title} className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 h-auto">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 h-auto">
             {solutions.map((solution) => (
               <TabsTrigger key={solution.title} value={solution.title} className="py-2.5">
                 <div className="flex items-center gap-2">
