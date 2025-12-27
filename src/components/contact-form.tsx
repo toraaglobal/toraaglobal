@@ -18,6 +18,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { CheckCircle, Loader2 } from 'lucide-react';
+import { sendContactMessage } from '@/ai/flows/send-contact-message';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -28,6 +30,7 @@ const formSchema = z.object({
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,11 +43,23 @@ export function ContactForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(values);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const result = await sendContactMessage(values);
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error('Failed to send message.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Error',
+        description: 'Something went wrong. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (isSubmitted) {
