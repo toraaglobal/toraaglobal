@@ -1,0 +1,80 @@
+{
+  "node": {
+    "40dec3e1b79140e38859b65f41671b1b44f9206859": {
+      "workers": {
+        "app/solutions/page": {
+          "moduleId": "[project]/.next-internal/server/app/solutions/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/generate-python-script-from-requirements.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/analyze-regulatory-documents-for-compliance.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/ai/flows/provide-strategic-recommendations-from-operational-data.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/ai/flows/answer-data-questions-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "generatePythonScript",
+          "filename": "src/ai/flows/generate-python-script-from-requirements.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/page": "action-browser"
+      },
+      "exportedName": "generatePythonScript",
+      "filename": "src/ai/flows/generate-python-script-from-requirements.ts"
+    },
+    "403852a013f8fd65c6f6bcb4a6c7ecc98625a82c6c": {
+      "workers": {
+        "app/solutions/page": {
+          "moduleId": "[project]/.next-internal/server/app/solutions/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/generate-python-script-from-requirements.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/analyze-regulatory-documents-for-compliance.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/ai/flows/provide-strategic-recommendations-from-operational-data.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/ai/flows/answer-data-questions-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "analyzeRegulatoryDocumentsForCompliance",
+          "filename": "src/ai/flows/analyze-regulatory-documents-for-compliance.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/page": "action-browser"
+      },
+      "exportedName": "analyzeRegulatoryDocumentsForCompliance",
+      "filename": "src/ai/flows/analyze-regulatory-documents-for-compliance.ts"
+    },
+    "400207e0979a11a9d290b4ae677556f907ab9d81bf": {
+      "workers": {
+        "app/solutions/page": {
+          "moduleId": "[project]/.next-internal/server/app/solutions/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/generate-python-script-from-requirements.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/analyze-regulatory-documents-for-compliance.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/ai/flows/provide-strategic-recommendations-from-operational-data.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/ai/flows/answer-data-questions-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "assessCreditRisk",
+          "filename": "src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/page": "action-browser"
+      },
+      "exportedName": "assessCreditRisk",
+      "filename": "src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts"
+    },
+    "40a9c476bcdc2f1dbfaca9129d7ee5bd3e9a832844": {
+      "workers": {
+        "app/solutions/page": {
+          "moduleId": "[project]/.next-internal/server/app/solutions/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/generate-python-script-from-requirements.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/analyze-regulatory-documents-for-compliance.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/ai/flows/provide-strategic-recommendations-from-operational-data.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/ai/flows/answer-data-questions-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "provideStrategicRecommendations",
+          "filename": "src/ai/flows/provide-strategic-recommendations-from-operational-data.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/page": "action-browser"
+      },
+      "exportedName": "provideStrategicRecommendations",
+      "filename": "src/ai/flows/provide-strategic-recommendations-from-operational-data.ts"
+    },
+    "400d19e4aabcdf969a88cb3f1e1660c8b683874161": {
+      "workers": {
+        "app/solutions/page": {
+          "moduleId": "[project]/.next-internal/server/app/solutions/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/generate-python-script-from-requirements.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/ai/flows/analyze-regulatory-documents-for-compliance.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/ai/flows/assess-credit-risks-with-ai-data-analysis.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE3 => \"[project]/src/ai/flows/provide-strategic-recommendations-from-operational-data.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE4 => \"[project]/src/ai/flows/answer-data-questions-flow.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "answerDataQuestion",
+          "filename": "src/ai/flows/answer-data-questions-flow.ts"
+        }
+      },
+      "layer": {
+        "app/solutions/page": "action-browser"
+      },
+      "exportedName": "answerDataQuestion",
+      "filename": "src/ai/flows/answer-data-questions-flow.ts"
+    }
+  },
+  "edge": {}
+}

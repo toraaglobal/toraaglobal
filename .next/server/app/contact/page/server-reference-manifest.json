@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40f95f61f7224db3d12e96a85f0852355110b42648": {
+      "workers": {
+        "app/contact/page": {
+          "moduleId": "[project]/.next-internal/server/app/contact/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/ai/flows/send-contact-message.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "sendContactMessage",
+          "filename": "src/ai/flows/send-contact-message.ts"
+        }
+      },
+      "layer": {
+        "app/contact/page": "action-browser"
+      },
+      "exportedName": "sendContactMessage",
+      "filename": "src/ai/flows/send-contact-message.ts"
+    }
+  },
+  "edge": {}
+}
