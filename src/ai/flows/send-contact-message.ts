@@ -3,28 +3,15 @@
  * @fileOverview A flow for sending a contact message.
  *
  * - sendContactMessage - A function that handles sending the contact message.
- * - SendContactMessageInput - The input type for the sendContactMessage function.
- * - SendContactMessageOutput - The return type for the sendContactMessage function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const SendContactMessageInputSchema = z.object({
-  name: z.string().describe('The name of the person sending the message.'),
-  email: z.string().email().describe('The email of the person sending the message.'),
-  message: z.string().describe('The message content.'),
-});
-export type SendContactMessageInput = z.infer<
-  typeof SendContactMessageInputSchema
->;
-
-export const SendContactMessageOutputSchema = z.object({
-  success: z.boolean(),
-});
-export type SendContactMessageOutput = z.infer<
-  typeof SendContactMessageOutputSchema
->;
+import {
+  SendContactMessageInputSchema,
+  SendContactMessageOutputSchema,
+  type SendContactMessageInput,
+  type SendContactMessageOutput,
+} from '@/ai/schemas/send-contact-message.ts';
 
 export async function sendContactMessage(
   input: SendContactMessageInput
