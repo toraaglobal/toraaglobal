@@ -6,11 +6,13 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { services, solutions } from '@/lib/data';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { services, solutions, blogs } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { CallToAction } from '@/components/cta';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import { CalendarDays, User } from 'lucide-react';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((p) => p.id === 'hero-background');
@@ -20,6 +22,7 @@ export default function Home() {
       <HeroSection heroImage={heroImage} />
       <ServicesSection />
       <SolutionsSection />
+      <BlogPreviewSection />
       <CallToAction />
     </div>
   );
@@ -241,6 +244,111 @@ function SolutionsSection() {
               </Card>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BlogPreviewSection() {
+  const latestBlogs = blogs.slice(0, 3);
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
+
+  return (
+    <section className="py-20 sm:py-32 bg-background">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-semibold text-primary"
+          >
+            Our Insights
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          >
+            Latest From Our Blog
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground"
+          >
+            Stay updated with the latest trends in data engineering and artificial intelligence.
+          </motion.p>
+        </div>
+
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {latestBlogs.map((blog) => (
+            <motion.div key={blog.id} variants={item}>
+              <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50 bg-card">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                      {blog.category}
+                    </Badge>
+                  </div>
+                  <CardTitle className="line-clamp-2 text-xl">{blog.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-muted-foreground line-clamp-3 mb-4">
+                    {blog.excerpt}
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mt-auto">
+                    <div className="flex items-center gap-1">
+                      <User className="h-3 w-3" />
+                      <span>{blog.author}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <CalendarDays className="h-3 w-3" />
+                      <span>{blog.date}</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="pt-0">
+                  <Button asChild variant="ghost" className="w-full text-primary hover:text-primary hover:bg-primary/10">
+                    <Link href={`/blog/${blog.id}`} className="group flex items-center">
+                      Read Article <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <div className="mt-12 text-center">
+          <Button variant="outline" size="lg" asChild>
+            <Link href="/blog">View All Posts</Link>
+          </Button>
         </div>
       </div>
     </section>

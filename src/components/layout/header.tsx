@@ -15,6 +15,7 @@ const navItems = [
   { href: '/solutions', label: 'Innovation Lab' },
   { href: '/about', label: 'About Us' },
   { href: '/resources', label: 'Knowledge Base' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 

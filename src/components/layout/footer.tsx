@@ -4,11 +4,12 @@ import { Button } from '../ui/button';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const navItems = [
-    { href: '/solutions', label: 'Innovation Lab' },
-    { href: '/about', label: 'About Us' },
-    { href: '/resources', label: 'Knowledge Base' },
-    { href: '/contact', label: 'Contact' },
-  ];
+  { href: '/solutions', label: 'Innovation Lab' },
+  { href: '/about', label: 'About Us' },
+  { href: '/resources', label: 'Knowledge Base' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export function Footer() {
   return (
@@ -50,12 +51,12 @@ export function Footer() {
                 </ul>
               </div>
               <div className="col-span-2 md:col-span-1">
-                 <h3 className="font-semibold text-foreground">Location</h3>
-                 <p className="mt-4 text-muted-foreground">
-                    1968 S. Coast Hwy #1571 <br />
-                    Laguna Beach, CA 92651 <br />
-                    United States
-                 </p>
+                <h3 className="font-semibold text-foreground">Location</h3>
+                <p className="mt-4 text-muted-foreground">
+                  1968 S. Coast Hwy #1571 <br />
+                  Laguna Beach, CA 92651 <br />
+                  United States
+                </p>
               </div>
             </div>
           </div>
@@ -66,13 +67,13 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" asChild>
-                <a href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></a>
+              <a href="#" aria-label="Twitter"><Twitter className="h-5 w-5" /></a>
             </Button>
             <Button variant="ghost" size="icon" asChild>
-                <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
+              <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5" /></a>
             </Button>
-             <Button variant="ghost" size="icon" asChild>
-                <a href="https://github.com/toraaglobal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
+            <Button variant="ghost" size="icon" asChild>
+              <a href="https://github.com/toraaglobal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github className="h-5 w-5" /></a>
             </Button>
           </div>
         </div>
