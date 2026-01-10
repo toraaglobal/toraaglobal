@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -35,11 +36,17 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                'transition-colors hover:text-primary',
+                'transition-colors hover:text-primary relative group',
                 pathname === item.href ? 'text-primary' : 'text-muted-foreground'
               )}
             >
               {item.label}
+              {pathname === item.href && (
+                <motion.span
+                  layoutId="underline"
+                  className="absolute left-0 top-full block h-0.5 w-full bg-primary"
+                />
+              )}
             </Link>
           ))}
         </nav>
@@ -58,30 +65,38 @@ export function Header() {
           </Button>
         </div>
       </div>
-      {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="container flex flex-col items-start space-y-4 py-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'w-full rounded-md p-2 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground',
-                  pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-foreground'
-                )}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Button asChild className="w-full">
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                Get In Touch
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden border-b border-border"
+          >
+            <div className="container flex flex-col items-start space-y-4 py-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    'w-full rounded-md p-2 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground',
+                    pathname === item.href ? 'bg-accent text-accent-foreground' : 'text-foreground'
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Button asChild className="w-full">
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  Get In Touch
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

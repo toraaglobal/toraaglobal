@@ -105,35 +105,35 @@ export interface TeamMember {
 
 export const team: TeamMember[] = [
   {
-    image: 'https://storage.googleapis.com/aifire.appspot.com/users%2F-redacted-%2Fprojects%2F-redacted-%2Ffiles%2Fuser_provided%2F2b442b58866750058e5f17d7b2752174.jpeg',
+    image: '/teejay.PNG',
     name: 'Tajudeen Abdulazeez',
     title: 'Data Engineering Lead',
     niche: 'Data Engineering & Transformation',
     bio: 'With over a decade of experience, Tajudeen delivers transformative data solutions.',
   },
   {
-    image: 'https://storage.googleapis.com/aifire.appspot.com/users%2F-redacted-%2Fprojects%2F-redacted-%2Ffiles%2Fuser_provided%2F5338501da8f482d8d85f81c95359052d.jpeg',
+    image: '/ismail.jpeg',
     name: 'Dr. Ismail Akinwale',
     title: 'Linux system Administrator',
     niche: 'Linux Systems & Infrastructure',
     bio: 'Ismail applies deep Linux expertise to optimize systems, ensure security, and deliver reliable, scalable infrastructure solutions.',
   },
   {
-    image: 'https://storage.googleapis.com/aifire.appspot.com/users%2F-redacted-%2Fprojects%2F-redacted-%2Ffiles%2Fuser_provided%2F7f26d2e33f3e1b3ed9852f55cc5d8525.jpeg',
+    image: '/shereef.jpeg',
     name: 'Dr. Shereef Bankole',
     title: 'Generative AI Specialist',
     niche: 'Generative AI & Strategy',
     bio: 'Shereef thrives on crafting creative AI strategies that solve complex challenges.',
   },
   {
-    image: 'https://storage.googleapis.com/aifire.appspot.com/users%2F-redacted-%2Fprojects%2F-redacted-%2Ffiles%2Fuser_provided%2F8f50c05342a170586e92f25608d169ac.jpeg',
+    image: '/dayo.jpeg',
     name: 'Dayo Adebayo',
     title: 'Strategy Consultant',
     niche: 'Leadership & Strategy',
     bio: 'Dayo excels at fostering leadership and designing impactful strategies.',
   },
   {
-    image: 'https://storage.googleapis.com/aifire.appspot.com/users%2F-redacted-%2Fprojects%2F-redacted-%2Ffiles%2Fuser_provided%2F503672958428259cae0050854d92000c.jpeg',
+    image: '/dotun.jpeg',
     name: 'Dotun Oladele, PMP',
     title: 'Project Management Specialist',
     niche: 'Strategic Project Management',
@@ -163,7 +163,7 @@ export const resources: Resource[] = [
     summary: 'By enabling models to "think step-by-step," this technique unlocks complex reasoning capabilities, which is vital for clients tackling multi-stage analytical problems.',
     href: 'https://arxiv.org/pdf/2210.11416',
   },
-   {
+  {
     title: 'Sparks of Artificial General Intelligence: Early experiments with GPT-4',
     summary: 'This work explores the surprisingly versatile and human-like capabilities of GPT-4, demonstrating its potential to solve novel and difficult tasks for our clients.',
     href: 'https://arxiv.org/pdf/2303.17564',
